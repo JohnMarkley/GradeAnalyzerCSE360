@@ -1,12 +1,8 @@
 ## CSE 360 Team Project
 
 ### src
+GradeAnalyzer.java (Main method)
 
--> GradeAnalyzer (Main method)
+UserInterface.java (GUI class, make listeners and such here)
 
--> UserInterface
-  
-
-  ----> UserInterface (GUI class, make listeners and such here)
-      
-  ----> UserInterface.form (GUI visualization) 
+UserInterface.form (GUI visualization) 

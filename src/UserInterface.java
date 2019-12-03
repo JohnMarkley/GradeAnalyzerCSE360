@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -40,12 +43,18 @@ public class UserInterface extends GradeAnalyzer {
     private JLabel numOfEntriesLabel;
     private JLabel highLabel;
     private JLabel lowLabel;
+    private JTable tableSet;
 
     //Object Variables we may need
     private int highBoundry, lowBoundry;
+
     //Following conditions to check if filename is valid and outputs errors if not valid.
 
     public UserInterface() throws FileNotFoundException {
+
+        createTableSet();
+
+
         createNewSetFromFileButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -177,8 +186,11 @@ public class UserInterface extends GradeAnalyzer {
                     }
                     if(cont) {
                         importGrades = new float[kbgrades.length];
-                        for(int i = 0; i < kbgrades.length; i++)
+                        for(int i = 0; i < kbgrades.length; i++) {
                             importGrades[i] = kbgrades[i];
+                        }
+                        addToTableSet(importGrades);
+
                     }
                 }
             }
@@ -291,6 +303,27 @@ public class UserInterface extends GradeAnalyzer {
             }
 
         });
+    }
+
+    private void createTableSet(){
+        tableSet.setAutoCreateRowSorter(true);
+        tableSet.setFillsViewportHeight(true);
+        tableSet.setPreferredScrollableViewportSize(new Dimension(550, 200));
+        tableSet.setModel(getTableModel());
+    }
+
+    private void addToTableSet(float[] arr){
+        DefaultTableModel newModel = getTableModel();
+        for(int i = 0; i < arr.length; i++)
+            newModel.addRow(new Object[] { arr[i] });
+        tableSet.setModel(newModel);
+
+    }
+
+    private DefaultTableModel getTableModel(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Grades");
+        return model;
     }
 
 

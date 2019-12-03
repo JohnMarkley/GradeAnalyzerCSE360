@@ -87,7 +87,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="e0aad" class="javax.swing.JButton" binding="createNewSetFromButton" default-binding="true">
+                  <component id="e0aad" class="javax.swing.JButton" binding="createNewSetFromFileButton">
                     <constraints/>
                     <properties>
                       <text value="Create New Set from File"/>

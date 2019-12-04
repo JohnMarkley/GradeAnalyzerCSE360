@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,7 +78,7 @@
       <updated>1575138244040</updated>
       <workItem from="1575138245231" duration="5315000" />
       <workItem from="1575144923187" duration="765000" />
-      <workItem from="1575344674312" duration="15673000" />
+      <workItem from="1575344674312" duration="24041000" />
     </task>
     <servers />
   </component>

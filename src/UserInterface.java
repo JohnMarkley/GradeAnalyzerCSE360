@@ -20,9 +20,10 @@ public class UserInterface extends GradeAnalyzer {
     static File gradeFile;
     static Scanner readIn;
     // static String inputTextField = "grades.txt"; // temporary text field.
-    static float[] importGrades = new float[0]; //This is the array the text list will be imported into.
-    static int lowBound = 0;
-    static int highBound = 100;//Global variables for the low and high bounds.
+    private float[] importGrades = new float[0]; //This is the array the text list will be imported into.
+    private int lowBound = 0;
+    private int highBound = 100;//Global variables for the low and high bounds.
+    private float mode = 0, mean = 0, max = 0, min = 0, median = 0; //If set is empty, these are accurate
 
     //Swing Components
     private JTextField highBoundryInput;
@@ -47,6 +48,7 @@ public class UserInterface extends GradeAnalyzer {
 
     //Object Variables we may need
     private int highBoundry, lowBoundry;
+
 
     //Following conditions to check if filename is valid and outputs errors if not valid.
 
@@ -294,6 +296,7 @@ public class UserInterface extends GradeAnalyzer {
                                 importGrades[i] = appendGrades[i];
 
                             readIn.close();
+                            addToTableSet(importGrades);
                         }
                         else
                             System.out.print("Invalid Data Type");
@@ -303,6 +306,89 @@ public class UserInterface extends GradeAnalyzer {
             }
 
         });
+
+
+        displayAnalysisButton.addActionListener(new ActionListener() {
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numOfEntriesLabel.setText("Number of Entries: " + importGrades.length);
+                getData();
+                highLabel.setText("High: " + max);
+                lowLabel.setText("Low: " + min);
+                meanLabel.setText("Mean: " + mean);
+                modeLabel.setText("Mode: " + mode);
+                medianLabel.setText("Median: " + median);
+
+
+            }
+        });
+    }
+
+    private void getData() {
+
+
+        //Median find
+        if(importGrades.length > 0) {
+            float sum = 0, tempMin = importGrades[0], tempMax = importGrades[0];
+
+            float sortedArr[] = importGrades;
+            Arrays.sort(sortedArr);
+            median = sortedArr[importGrades.length / 2];
+
+            //Parts of the following code taken from GeeksForGeeks
+            //Mode find
+            Map<Float, Float> map = new HashMap<>();
+            for (int i = 0; i < importGrades.length; i++) {
+                float key = sortedArr[i];
+                if (map.containsKey(key)) {
+                    float freq = map.get(key);
+                    freq++;
+                    map.put(key, freq);
+                } else {
+                    map.put(key, 1f);
+                }
+            }
+            float max_count = 0f, result = -1f;
+            for (Map.Entry<Float, Float> val : map.entrySet()) {
+                if (max_count < val.getValue()) {
+                    result = val.getKey();
+                    max_count = val.getValue();
+                }
+            }
+
+            mode = result;
+
+            //Mean, Min & Max find
+
+            for (int i = 0; i < importGrades.length; i++) {
+
+                if (tempMax < importGrades[i])
+                    tempMax = importGrades[i];
+
+                if (tempMin > importGrades[i])
+                    tempMin = importGrades[i];
+
+                sum += importGrades[i];
+
+
+            }
+
+            max = tempMax;
+            min = tempMin;
+            mean = sum / importGrades.length;
+        }else{
+            min = 0;
+            max = 0;
+            median = 0;
+            mode = 0;
+        }
+
+
     }
 
     private void createTableSet(){

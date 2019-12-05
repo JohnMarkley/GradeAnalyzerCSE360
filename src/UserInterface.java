@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Scanner;
 import java.text.NumberFormat;
 import java.util.*;
@@ -24,7 +27,11 @@ public class UserInterface extends GradeAnalyzer {
     private int lowBound = 0;
     private int highBound = 100;//Global variables for the low and high bounds.
     private float mode = 0, mean = 0, max = 0, min = 0, median = 0; //If set is empty, these are accurate
-
+    static Timestamp timestamp;
+    static String OS = System.getProperty("os.name").toLowerCase();
+    static String desktop = System.getProperty ("user.home") + "/Desktop/";
+    static File filename = new File(desktop+"/error.txt");
+    static String toolsPath = "C:/WINDOWS/system32/notepad.exe ";
     //Swing Components
     private JTextField highBoundryInput;
     private JTextField lowBoundryInput;
@@ -65,90 +72,104 @@ public class UserInterface extends GradeAnalyzer {
              */
             @Override
             public void actionPerformed(ActionEvent e)  {
-                //Following conditions to check if filename is valid and outputs errors if not valid.
-                String inputString = inputTextField.toString();
-                int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
+                try
+                {
+                    //Following conditions to check if filename is valid and outputs errors if not valid.
+                    timestamp = new Timestamp(System.currentTimeMillis());
+                    String inputString = inputTextField.getText();
+                    filename.createNewFile();
+                    FileWriter fw = new FileWriter(filename, true);
+                    int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
      the input is a valid file name.*/
-                int space = inputString.indexOf(" ");
-                if(space != -1) System.out.println("Too Many Files");
-                else if(dotPosition == -1) System.out.println("Invalid Value"); //There is no dot in the filename
-
-                else {// if the dot exists in the string
-                    if(dotPosition + 3 > inputString.length() -1)
-                        System.out.println("Invalid Data type"); //-------------------------------REPLACE ERROR
-                    else {
-                        String extensionType = inputString.substring(dotPosition +1, dotPosition +4);
-                        //extensionType grabs the extension type of input filename
-                        if(extensionType.equals("txt") || extensionType.equals("csv")) {
-                            //File reading begins here. -------------------------------------------------------------
-
-                            try {
-                                gradeFile = new File(inputString);
-                                readIn = new Scanner(gradeFile);
-                            }
-                            catch (FileNotFoundException ex) {
-                                System.out.print("File not found");
-                            }
-
-                            int lineCount = 0;
-                            while(readIn.hasNextLine()) { //while not at end of file
-                                boolean cont = true;
-                                lineCount++;
-                                String num = readIn.nextLine();
-                                float value = 0;
-                                try { value = Float.parseFloat(num); }
-                                catch (NumberFormatException ex) {
-                                    lineCount--;
-                                    cont = false;
-                                }
-                                if(cont){  //if there are no more errors
-                                    //Checking if contents are out of bounds or not
-
-                                    //Checking if values are within bounds set by user.
-                                    if (value >= highBound || value <= lowBound) {
-                                        lineCount--;
-                                    }
-                                }
-                            }
-
-                            importGrades = new float[lineCount];
-                            try {
-                                readIn = new Scanner(gradeFile);
-                            } catch (FileNotFoundException ex) {
-                                ex.printStackTrace();
-                            }
-                            //reading in file line by line
-                            int position = 0;
-                            while(readIn.hasNextLine()) { //while not at end of file
-                                String num = readIn.nextLine();
-
-                                boolean cont = true; //no problem reading in the file, then continue.
-                                float value = 0;
-                                //Try catch tries to make sure contents in files is a number.
-                                try { value = Float.parseFloat(num); }
-                                catch (NumberFormatException ex) {
-                                    System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
-                                    cont = false;
-                                }
-                                if(cont){  //if there are no more errors
-                                    //Checking if contents are out of bounds or not
-
-                                    //Checking if values are within bounds set by user.
-                                    if (value < highBound && value > lowBound) {
-                                        importGrades[position] = value;
-                                        position++;
-                                    }
-                                    else
-                                        System.out.println("Value is out of bounds");
-                                }
-
-                            }
-                            readIn.close();
-                        }
-                        else
-                            System.out.print("Invalid Data Type");
-
+                    int space = inputString.indexOf(" ");
+                    if(space != -1){
+                        fw.write("["+timestamp+"] Import file failure: Please import one file at a time\n");
                     }
+                    else if(dotPosition == -1) {
+                        fw.write("["+timestamp+"] Import file failure: Please check the file name\n");
+                    }
+                    else {// if the dot exists in the string
+                        if(dotPosition + 3 > inputString.length() -1)
+                            fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                        else {
+                            String extensionType = inputString.substring(dotPosition +1, dotPosition +4);
+                            //extensionType grabs the extension type of input filename
+                            if(extensionType.equals("txt") || extensionType.equals("csv")) {
+                                //File reading begins here. -------------------------------------------------------------
+
+                                try {
+                                    gradeFile = new File(inputString);
+                                    readIn = new Scanner(gradeFile);
+                                }
+                                catch (FileNotFoundException ex) {
+                                    fw.write("["+timestamp+"] Import file failure: The "+inputString+" does not exist. Please check the file name\n");
+                                }
+
+                                int lineCount = 0;
+                                while(readIn.hasNextLine()) { //while not at end of file
+                                    boolean cont = true;
+                                    lineCount++;
+                                    String num = readIn.nextLine();
+                                    float value = 0;
+                                    try { value = Float.parseFloat(num); }
+                                    catch (NumberFormatException ex) {
+                                        lineCount--;
+                                        cont = false;
+                                    }
+                                    if(cont){  //if there are no more errors
+                                        //Checking if contents are out of bounds or not
+
+                                        //Checking if values are within bounds set by user.
+                                        if (value >= highBound || value <= lowBound) {
+                                            lineCount--;
+                                        }
+                                    }
+                                }
+
+                                importGrades = new float[lineCount];
+                                try {
+                                    readIn = new Scanner(gradeFile);
+                                } catch (FileNotFoundException ex) {
+                                    ex.printStackTrace();
+                                }
+                                //reading in file line by line
+                                int position = 0;
+                                while(readIn.hasNextLine()) { //while not at end of file
+                                    String num = readIn.nextLine();
+
+                                    boolean cont = true; //no problem reading in the file, then continue.
+                                    float value = 0;
+                                    //Try catch tries to make sure contents in files is a number.
+                                    try { value = Float.parseFloat(num); }
+                                    catch (NumberFormatException ex) {
+                                        fw.write("["+timestamp+"] ValueError: "+value+" is not allowed. Please check the file's data.\n");
+                                        cont = false;
+                                    }
+                                    if(cont){  //if there are no more errors
+                                        //Checking if contents are out of bounds or not
+
+                                        //Checking if values are within bounds set by user.
+                                        if (value < highBound && value > lowBound) {
+                                            importGrades[position] = value;
+                                            position++;
+                                        }
+                                        else{
+                                            fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                                        }
+                                    }
+
+                                }
+                                readIn.close();
+                            }
+                            else {
+                                fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                            }
+                        }
+                    }
+                    fw.flush();
+                    fw.close();
+                } catch (IOException ex1) {
+                    ex1.printStackTrace();
                 }
             }
 
@@ -163,12 +184,21 @@ public class UserInterface extends GradeAnalyzer {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                timestamp = new Timestamp(System.currentTimeMillis());
                 String inputString = inputTextField.getText();
                 readIn = new Scanner(inputString);
                 float value = 0;
                 boolean cont = true; //continue or not if number is valid
                 try { value = Float.parseFloat(inputString); }
-                catch (NumberFormatException ex) { System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
+                catch (NumberFormatException ex) {
+                    try {
+                        FileWriter fw = new FileWriter(filename, true);
+                        fw.write("["+timestamp+"] ValueError: "+ value +" is not allowed. Please check the file's data.\n");
+                        fw.flush();
+                        fw.close();
+                    } catch (IOException ex1) {
+                        ex1.printStackTrace();
+                    }
                     cont = false;
                 }
                 if (cont) {
@@ -183,16 +213,21 @@ public class UserInterface extends GradeAnalyzer {
                         kbgrades[importGrades.length] = value;
                     }
                     else {
-                        System.out.println("Value is out of bounds");
+                        try {
+                            FileWriter fw = new FileWriter(filename, true);
+                            fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                            fw.flush();
+                            fw.close();
+                        } catch (IOException ex1) {
+                            ex1.printStackTrace();
+                        }
                         cont = false;
                     }
                     if(cont) {
                         importGrades = new float[kbgrades.length];
-                        for(int i = 0; i < kbgrades.length; i++) {
+                        for(int i = 0; i < kbgrades.length; i++)
                             importGrades[i] = kbgrades[i];
-                        }
                         addToTableSet(importGrades);
-
                     }
                 }
             }
@@ -207,16 +242,43 @@ public class UserInterface extends GradeAnalyzer {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputString = inputTextField.toString();
+                timestamp = new Timestamp(System.currentTimeMillis());
+                String inputString = inputTextField.getText();
                 int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
      the input is a valid file name.*/
                 int space = inputString.indexOf(" ");
-                if(space != -1) System.out.println("Too Many Files");
-                else if(dotPosition == -1) System.out.println("Invalid Value"); //There is no dot in the filename
+                if(space != -1) {
+                    try {
+                        FileWriter fw = new FileWriter(filename, true);
+                        fw.write("["+timestamp+"] Import file failure: Please import one file at a time\n");
+                        fw.flush();
+                        fw.close();
+                    } catch (IOException ex1) {
+                        ex1.printStackTrace();
+                    }
+                }
+                else if(dotPosition == -1){
+                    try {
+                        FileWriter fw = new FileWriter(filename, true);
+                        fw.write("["+timestamp+"] Import file failure: Invalid Data type. Please check the your data\n");
+                        fw.flush();
+                        fw.close();
+                    } catch (IOException ex1) {
+                        ex1.printStackTrace();
+                    }
+                }
 
                 else {// if the dot exists in the string
-                    if(dotPosition + 3 > inputString.length() -1)
-                        System.out.println("Invalid Data type"); //-------------------------------REPLACE ERROR
+                    if(dotPosition + 3 > inputString.length() -1){
+                        try {
+                            FileWriter fw = new FileWriter(filename, true);
+                            fw.write("["+timestamp+"] Import file failure: Invalid Data type. Please check the your data\n");
+                            fw.flush();
+                            fw.close();
+                        } catch (IOException ex1) {
+                            ex1.printStackTrace();
+                        }
+                    }
                     else {
                         String extensionType = inputString.substring(dotPosition +1, dotPosition +4);
                         //extensionType grabs the extension type of input filename
@@ -272,7 +334,14 @@ public class UserInterface extends GradeAnalyzer {
                                 //Try catch tries to make sure contents in files is a number.
                                 try { value = Float.parseFloat(num); }
                                 catch (NumberFormatException ex) {
-                                    System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
+                                    try {
+                                        FileWriter fw = new FileWriter(filename, true);
+                                        fw.write("["+timestamp+"] ValueError: "+ value +" is not allowed. Please check the file's data.\n");
+                                        fw.flush();
+                                        fw.close();
+                                    } catch (IOException ex1) {
+                                        ex1.printStackTrace();
+                                    }
                                     cont = false;
                                 }
                                 if(cont){  //if there are no more errors
@@ -283,8 +352,16 @@ public class UserInterface extends GradeAnalyzer {
                                         appendGrades[position + importGrades.length] = value;
                                         position++;
                                     }
-                                    else
-                                        System.out.println("Value is out of bounds");
+                                    else{
+                                        try {
+                                            FileWriter fw = new FileWriter(filename, true);
+                                            fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                                            fw.flush();
+                                            fw.close();
+                                        } catch (IOException ex1) {
+                                            ex1.printStackTrace();
+                                        }
+                                    }
                                 }
 
                             }
@@ -298,15 +375,41 @@ public class UserInterface extends GradeAnalyzer {
                             readIn.close();
                             addToTableSet(importGrades);
                         }
-                        else
-                            System.out.print("Invalid Data Type");
+                        else{
+                            try {
+                                FileWriter fw = new FileWriter(filename, true);
+                                fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                                fw.flush();
+                                fw.close();
+                            } catch (IOException ex1) {
+                                ex1.printStackTrace();
+                            }
+                        }
 
                     }
                 }
             }
 
         });
-
+        errorLogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(OS.indexOf("win")>=0) {
+                    try {
+                        Process exec = Runtime.getRuntime().exec(toolsPath + desktop + "error.txt");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                if(OS.indexOf("mac")>=0){
+                    try {
+                        Process p = new ProcessBuilder("open", desktop+"error.txt").start();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
 
         displayAnalysisButton.addActionListener(new ActionListener() {
             /**

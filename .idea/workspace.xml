@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
@@ -78,7 +79,9 @@
       <updated>1575138244040</updated>
       <workItem from="1575138245231" duration="5315000" />
       <workItem from="1575144923187" duration="765000" />
-      <workItem from="1575344674312" duration="24041000" />
+      <workItem from="1575344674312" duration="25028000" />
+      <workItem from="1575503528379" duration="782000" />
+      <workItem from="1575504495815" duration="290000" />
     </task>
     <servers />
   </component>
@@ -90,7 +93,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

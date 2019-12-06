@@ -79,6 +79,7 @@ public class UserInterface extends GradeAnalyzer {
                     //Following conditions to check if filename is valid and outputs errors if not valid.
                     timestamp = new Timestamp(System.currentTimeMillis());
                     String inputString = inputTextField.getText();
+                    inputString = inputString.trim();
                     filename.createNewFile();
                     FileWriter fw = new FileWriter(filename, true);
                     int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
@@ -190,6 +191,7 @@ public class UserInterface extends GradeAnalyzer {
             public void actionPerformed(ActionEvent e) {
                 timestamp = new Timestamp(System.currentTimeMillis());
                 String inputString = inputTextField.getText();
+                inputString = inputString.trim();
                 readIn = new Scanner(inputString);
                 float value = 0;
                 boolean cont = true; //continue or not if number is valid
@@ -250,6 +252,7 @@ public class UserInterface extends GradeAnalyzer {
             public void actionPerformed(ActionEvent e) {
                 timestamp = new Timestamp(System.currentTimeMillis());
                 String inputString = inputTextField.getText();
+                inputString = inputString.trim();
                 int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
      the input is a valid file name.*/
                 int space = inputString.indexOf(" ");
@@ -511,6 +514,7 @@ public class UserInterface extends GradeAnalyzer {
                 //NOTE: Currently there's this error where the number deleted is replaced by a zero if it's not
                 //the last one in the set. Will work on resolving this.
                 String inputString = inputTextField.getText();
+                inputString = inputString.trim();
                 float value = 0;
                 boolean cont = true; //continue or not if number is valid
                 try {
@@ -556,8 +560,14 @@ public class UserInterface extends GradeAnalyzer {
                                 kIndex++;
                             }
 
+                            //debuggin
+                            for(int i = 0; i < kbgrades.length; i++)
+                            {
+                                System.out.println("Test grade holder: " + kbgrades[i]);
+                            }
+
                             importGrades = new float[kbgrades.length]; //copy everything back over to the working set
-                            for (int i = 1; i < kbgrades.length; i++) {
+                            for (int i = 0; i < kbgrades.length; i++) {
                                 importGrades[i] = kbgrades[i];
                                 System.out.println("New set at " + i + " is: " + importGrades[i]);
                             }
@@ -735,4 +745,5 @@ public class UserInterface extends GradeAnalyzer {
         }
         return arr;
     }
+
 }

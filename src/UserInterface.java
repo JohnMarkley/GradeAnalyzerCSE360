@@ -164,7 +164,7 @@ public class UserInterface extends GradeAnalyzer {
                                         //Checking if contents are out of bounds or not
 
                                         //Checking if values are within bounds set by user.
-                                        if (value < highBound && value > lowBound) {
+                                        if (value < highBound  && value > lowBound ) {
                                             importGrades[position] = value;
                                             position++;
                                         }
@@ -458,6 +458,67 @@ public class UserInterface extends GradeAnalyzer {
         createReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int count[] = new int[10];
+                float boundaries[] = new float[10];
+                boundaries = calculateBoundaries();
+                for(int j = 0; j < importGrades.length; j++)
+                {
+                    if(importGrades[j] <= boundaries[0])
+                    {
+                        count[0]++;
+                    }
+                    else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
+                    {
+                        count[1]++;
+                    }
+                    else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
+                    {
+                        count[2]++;
+                    }
+                    else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
+                    {
+                        count[3]++;
+                    }
+                    else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
+                    {
+                        count[4]++;
+                    }
+                    else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
+                    {
+                        count[5]++;
+                    }
+                    else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
+                    {
+                        count[6]++;
+                    }
+                    else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
+                    {
+                        count[7]++;
+                    }
+                    else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
+                    {
+                        count[8]++;
+                    }
+                    else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
+                    {
+                        count[9]++;
+                    }
+                }
+
+                String categories = "Grade distribution: \n"
+                        + min + "-" + boundaries[0] + ": " + count[0] + " out of " + importGrades.length +"\n"
+                        + boundaries[0] + "-" + boundaries[1] + ": " + count[1] + " out of " + importGrades.length + "\n"
+                        + boundaries[1] + "-" + boundaries[2] + ": " + count[2] + " out of " + importGrades.length + "\n"
+                        + boundaries[2] + "-" + boundaries[3] + ": " + count[3] + " out of " + importGrades.length + "\n"
+                        + boundaries[3] + "-" + boundaries[4] + ": " + count[4] + " out of " + importGrades.length + "\n"
+                        + boundaries[4] + "-" + boundaries[5] + ": " + count[5] + " out of " + importGrades.length + "\n"
+                        + boundaries[5] + "-" + boundaries[6] + ": " + count[6] + " out of " + importGrades.length + "\n"
+                        + boundaries[6] + "-" + boundaries[7] + ": " + count[7] + " out of " + importGrades.length + "\n"
+                        + boundaries[7] + "-" + boundaries[8] + ": " + count[8] + " out of " + importGrades.length + "\n"
+                        + boundaries[8] + "-" + boundaries[9] + ": " + count[9] + " out of " + importGrades.length + "\n";
+
+
+
                 String boundReport = "The bounds for the data set are: \n"
                         +"High bound: " + highBound + "\n" + "Low bound: " + lowBound+ "\n";
                 String analysisReport = "A current analysis of the data results in:\n"
@@ -476,10 +537,6 @@ public class UserInterface extends GradeAnalyzer {
                     percentile = Integer.toString(i+1);
                     averages = averages + "Group " + percentile +" average is: " + sectionAverage[i] + "\n";
                 }
-                System.out.println(boundReport);
-                System.out.println(analysisReport);
-                System.out.println(averages);
-                System.out.println(history);
 
                 File file = new File("report.txt");
                 if(file.canWrite() == true)
@@ -509,6 +566,8 @@ public class UserInterface extends GradeAnalyzer {
                     writer.write(boundReport);
                     writer.append("\n");
                     writer.append(analysisReport);
+                    writer.append("\n");
+                    writer.append(categories);
                     writer.append("\n");
                     writer.append(averages);
                     writer.append("\n");

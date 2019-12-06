@@ -610,6 +610,8 @@ public class UserInterface extends GradeAnalyzer {
                             validBound = false;
                             System.out.println("There's data that is outside of these new bounds.\n" +
                                     "Either make a new data set or change the boundary values.");
+                            highBoundryInput.setText("");
+                            lowBoundryInput.setText("");
                         }
                     }
                     if(validBound == true) {

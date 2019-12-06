@@ -814,32 +814,69 @@ public class UserInterface extends GradeAnalyzer {
         return model;
     }
 
-    private void findSectionAverages()
-    {
-        int sectionLength = importGrades.length / 10; //10 is used here since we need 10 average
-        if(importGrades.length / 10 < 1)
+    private void findSectionAverages() {
+        float boundaryVal [] = new float[10]; // 10 data boundaries
+        float sum [] = new float[10];
+        int count [] = new int[10];
+        boundaryVal = calculateBoundaries();
+
+        for(int j = 0; j < importGrades.length; j++)
         {
-            sectionLength = 1; //at least one number per section
-        }
-        if(importGrades.length <= 10)
-        {
-            sectionAverage = new float[importGrades.length];
-        }
-        else
-        {
-            sectionAverage = new float[10]; //10 averages at most
-        }
-        float localSum = 0;
-        float localAvg = 0;
-        for(int count = 0; count < sectionAverage.length; count++)
-        {
-            for(int sectionCount = 0; sectionCount < sectionLength; sectionCount++)
+            if(importGrades[j] <= boundaryVal[0])
             {
-                localSum += importGrades[sectionCount + (count * sectionLength)];
+                sum[0] += importGrades[j];
+                count[0]++;
             }
-            localAvg = localSum / sectionLength;
-            sectionAverage[count] = localAvg;
-            localSum = 0;
+            else if(importGrades[j] > boundaryVal[0] && importGrades[j] <= boundaryVal[1])
+            {
+                sum[1] += importGrades[j];
+                count[1]++;
+            }
+            else if(importGrades[j] > boundaryVal[1] && importGrades[j] <= boundaryVal[2])
+            {
+                sum[2] += importGrades[j];
+                count[2]++;
+            }
+            else if(importGrades[j] > boundaryVal[2] && importGrades[j] <= boundaryVal[3])
+            {
+                sum[3] += importGrades[j];
+                count[3]++;
+            }
+            else if(importGrades[j] > boundaryVal[3] && importGrades[j] <= boundaryVal[4])
+            {
+                sum[4] += importGrades[j];
+                count[4]++;
+            }
+            else if(importGrades[j] > boundaryVal[4] && importGrades[j] <= boundaryVal[5])
+            {
+                sum[5] += importGrades[j];
+                count[5]++;
+            }
+            else if(importGrades[j] > boundaryVal[5] && importGrades[j] <= boundaryVal[6])
+            {
+                sum[6] += importGrades[j];
+                count[6]++;
+            }
+            else if(importGrades[j] > boundaryVal[6] && importGrades[j] <= boundaryVal[7])
+            {
+                sum[7] += importGrades[j];
+                count[7]++;
+            }
+            else if (importGrades[j] > boundaryVal[7] && importGrades[j] <= boundaryVal[8])
+            {
+                sum[8] += importGrades[j];
+                count[8]++;
+            }
+            else if(importGrades[j] > boundaryVal[8] && importGrades[j] <= boundaryVal[9])
+            {
+                sum[9] += importGrades[j];
+                count[9]++;
+            }
+
+            for(int k = 0; k < sectionAverage.length; k++)
+            {
+                sectionAverage[k] = sum[k] / count[k];
+            }
         }
     }
     private float[] reverseArr(float[] arr)

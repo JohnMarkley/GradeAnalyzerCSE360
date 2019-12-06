@@ -27,6 +27,8 @@ public class UserInterface extends GradeAnalyzer {
     private int lowBound = 0;
     private int highBound = 100;//Global variables for the low and high bounds.
     private float mode = 0, mean = 0, max = 0, min = 0, median = 0; //If set is empty, these are accurate
+    private String history = ""; //Variable to keep track of actions taken
+    private float[] sectionAverage = new float[10]; //average of each 10% of data
     static Timestamp timestamp;
     static String OS = System.getProperty("os.name").toLowerCase();
     static String desktop = System.getProperty ("user.home") + "/Desktop/";

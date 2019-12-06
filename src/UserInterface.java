@@ -1,3 +1,5 @@
+import com.sun.deploy.util.ArrayUtil;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -14,6 +16,7 @@ import java.text.NumberFormat;
 import java.util.*;
 import java.awt.event.*;
 import java.lang.String;
+import java.util.Arrays;
 
 public class UserInterface extends GradeAnalyzer {
     //Need this for the main class
@@ -530,7 +533,7 @@ public class UserInterface extends GradeAnalyzer {
                     }
                     if (cont) {
                         float[] kbgrades = new float[importGrades.length - 1];
-                        float numAt = -1; //-1 represents the number not being in the set
+                        int numAt = -1; //-1 represents the number not being in the set
                         Arrays.sort(importGrades);
                         reverseArr(importGrades);
                         for (int i = 0; i < importGrades.length; i++) //find number and mark its index in the original set
@@ -547,7 +550,6 @@ public class UserInterface extends GradeAnalyzer {
                         else {
                             int kIndex = 0;
                             int impIndex = 0;
-
                             while (kIndex < kbgrades.length) { //copy everything over except for the one marked index, the one we want to delete
                                 if (impIndex == numAt) {
                                     System.out.println("Skipping " + importGrades[impIndex]);

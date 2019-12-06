@@ -557,7 +557,7 @@ public class UserInterface extends GradeAnalyzer {
                             }
 
                             importGrades = new float[kbgrades.length]; //copy everything back over to the working set
-                            for (int i = 0; i < kbgrades.length; i++) {
+                            for (int i = 1; i < kbgrades.length; i++) {
                                 importGrades[i] = kbgrades[i];
                                 System.out.println("New set at " + i + " is: " + importGrades[i]);
                             }

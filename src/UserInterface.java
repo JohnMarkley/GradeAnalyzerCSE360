@@ -641,9 +641,9 @@ public class UserInterface extends GradeAnalyzer {
                 hozLabel[0] = lowBound + "-" + boundaries[0];
                 for(int i = 1; i < hozLabel.length-1; i++)
                 {
-                    hozLabel[i] = boundaries[i] + "-" + boundaries[i+1];
+                    hozLabel[i] = boundaries[i-1] + "-" + boundaries[i];
                 }
-                hozLabel[9] = boundaries[9] + "-" + highBound;
+                hozLabel[9] = boundaries[8] + "-" + max;
                 final String fiat = "Score average";
 
                 final DefaultCategoryDataset dataset =
@@ -689,10 +689,6 @@ public class UserInterface extends GradeAnalyzer {
                     else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
                     {
                         dataset.addValue( importGrades[j] , fiat , hozLabel[9]);
-                    }
-                    else if(importGrades[j] > boundaries[9])
-                    {
-
                     }
                 }
 
@@ -843,31 +839,50 @@ public class UserInterface extends GradeAnalyzer {
     private float[] calculateBoundaries()
     {
         float boundaryVal [] = new float[10]; // 10 data boundaries
+        double calcBound [] = new double[10];
         float temp;
         double holdVal;
         double holdVal2;
         int index;
         int index2;
         float avg;
+        calcBound[0] = Math.ceil(max * 0.1);
+        calcBound[1] = Math.ceil(max * 0.2);
+        calcBound[2] = Math.ceil(max * 0.3);
+        calcBound[3] = Math.ceil(max * 0.4);
+        calcBound[4] = Math.ceil(max * 0.5);
+        calcBound[5] = Math.ceil(max * 0.6);
+        calcBound[6] = Math.ceil(max * 0.7);
+        calcBound[7] = Math.ceil(max * 0.8);
+        calcBound[8] = Math.ceil(max * 0.9);
+        calcBound[9] = max;
+
         for(int i = 0; i < boundaryVal.length; i++)
         {
-            temp = (i * (importGrades.length + 1)) / 10; //equation to find a decile
-            holdVal = temp;
-            if(Math.floor(holdVal) == temp) //checks to see if temp can be converted into an int
-            {
-                index = (int)temp;
-                boundaryVal[i] = importGrades[index];
-            }
-            else
-            {
-                holdVal = temp; holdVal2 = temp;
-                holdVal = Math.floor(holdVal);
-                holdVal2 = Math.ceil(holdVal2);
-                index = (int)holdVal; index2 = (int)holdVal2;
-                avg = (importGrades[index] + importGrades[index2]) / 2;
-                boundaryVal[i] = avg;
-            }
+            boundaryVal[i] = (float)calcBound[i];
         }
+
+
+
+//        for(int i = 0; i < boundaryVal.length; i++)
+//        {
+//            temp = (i * (importGrades.length + 1)) / 10; //equation to find a decile
+//            holdVal = temp;
+//            if(Math.floor(holdVal) == temp) //checks to see if temp can be converted into an int
+//            {
+//                index = (int)temp;
+//                boundaryVal[i] = importGrades[index];
+//            }
+//            else
+//            {
+//                holdVal = temp; holdVal2 = temp;
+//                holdVal = Math.floor(holdVal);
+//                holdVal2 = Math.ceil(holdVal2);
+//                index = (int)holdVal; index2 = (int)holdVal2;
+//                avg = (importGrades[index] + importGrades[index2]) / 2;
+//                boundaryVal[i] = avg;
+//            }
+//        }
         return boundaryVal;
     }
 }

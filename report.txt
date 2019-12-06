@@ -3,21 +3,13 @@ High bound: 100
 Low bound: 0
 
 A current analysis of the data results in:
-Number of entries: 4
-Highest Value: 60.0
-Lowest Value: 45.0
-Mean: 48.75
-Median: 45.0
-Mode: 45.0
+Number of entries: 2
+Highest Value: 70.0
+Lowest Value: 50.0
+Mean: 60.0
+Median: 70.0
+Mode: 50.0
 
-Group 1 average is: NaN
-Group 2 average is: NaN
-Group 3 average is: NaN
-Group 4 average is: NaN
-Group 5 average is: NaN
-Group 6 average is: NaN
-Group 7 average is: NaN
-Group 8 average is: NaN
-Group 9 average is: NaN
-Group 10 average is: NaN
+Group 1 average is: 50.0
+Group 2 average is: 70.0
 

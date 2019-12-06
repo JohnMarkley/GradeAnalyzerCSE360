@@ -623,6 +623,7 @@ public class UserInterface extends GradeAnalyzer {
     }
 
     private void createTableSet(){
+
         tableSet.setAutoCreateRowSorter(true);
         tableSet.setFillsViewportHeight(true);
         tableSet.setPreferredScrollableViewportSize(new Dimension(550, 200));
@@ -630,6 +631,8 @@ public class UserInterface extends GradeAnalyzer {
     }
 
     private void addToTableSet(float[] arr){
+        Arrays.sort(arr);
+        reverseArr(arr); //These two function ensure the array is in descending order
         DefaultTableModel newModel = getTableModel();
         for(int i = 0; i < arr.length; i++)
             newModel.addRow(new Object[] { arr[i] });
@@ -645,19 +648,40 @@ public class UserInterface extends GradeAnalyzer {
 
     private void findSectionAverages()
     {
-        int sectionLength = importGrades.length / 10; //10 is used here since we need 10 averages
+        int sectionLength = importGrades.length / 10; //10 is used here since we need 10 average
+        if(importGrades.length / 10 < 1)
+        {
+            sectionLength = 1; //at least one number per section
+        }
+        if(importGrades.length <= 10)
+        {
+            sectionAverage = new float[importGrades.length];
+        }
+        else
+        {
+            sectionAverage = new float[10]; //10 averages at most
+        }
         float localSum = 0;
         float localAvg = 0;
         for(int count = 0; count < sectionAverage.length; count++)
         {
             for(int sectionCount = 0; sectionCount < sectionLength; sectionCount++)
             {
-                localSum += importGrades[sectionCount];
+                localSum += importGrades[sectionCount + (count * sectionLength)];
             }
             localAvg = localSum / sectionLength;
             sectionAverage[count] = localAvg;
             localSum = 0;
         }
     }
-
+    private float[] reverseArr(float[] arr)
+    {
+        for(int i = 0; i < arr.length/2; i++)
+        {
+            float hold = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = hold;
+        }
+        return arr;
+    }
 }

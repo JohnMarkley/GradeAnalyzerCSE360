@@ -597,8 +597,8 @@ public class UserInterface extends GradeAnalyzer {
                 {
                     System.out.println("High boundary must be greater than low boundary");
 
-                    highBoundryInput.setText("");
-                    lowBoundryInput.setText("");
+                    highBoundryInput.setText(Integer.toString(highBound));
+                    lowBoundryInput.setText(Integer.toString(lowBound));
                 }
                 else
                 {

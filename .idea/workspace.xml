@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,18 +52,6 @@
       <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.GradeAnalyzer">
     <configuration name="GradeAnalyzer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GradeAnalyzer" />
@@ -84,6 +73,18 @@
         <item itemvalue="Application.UserInterface" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -125,22 +126,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575651802800" />
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575669216382">
+    <state width="820" height="116" key="GridCell.Tab.0.bottom" timestamp="1575670787788">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575669216382" />
-    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1575669216382">
+    <state width="820" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575670787788" />
+    <state width="820" height="116" key="GridCell.Tab.0.center" timestamp="1575670787788">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575669216382" />
-    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1575669216382">
+    <state width="820" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575670787788" />
+    <state width="820" height="116" key="GridCell.Tab.0.left" timestamp="1575670787788">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575669216382" />
-    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1575669216382">
+    <state width="820" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575670787788" />
+    <state width="820" height="116" key="GridCell.Tab.0.right" timestamp="1575670787788">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575669216382" />
+    <state width="820" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575670787788" />
     <state x="242" y="0" key="SettingsEditor" timestamp="1575651804830">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

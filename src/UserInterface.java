@@ -20,7 +20,9 @@ import java.util.Arrays;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.RefineryUtilities;
@@ -637,6 +639,7 @@ public class UserInterface extends GradeAnalyzer {
                 //here can use the loop to declare each variable
                 float boundaries[] = new float[10]; //boundaries for each group
                 boundaries = calculateBoundaries();
+                findSectionAverages();
                 String hozLabel [] = new String[boundaries.length];
                 hozLabel[0] = lowBound + "-" + boundaries[0];
                 for(int i = 1; i < hozLabel.length-1; i++)
@@ -691,11 +694,11 @@ public class UserInterface extends GradeAnalyzer {
                     {
                         count[9]++;
                     }
+                }
 
-                    for(int k = 0; k < hozLabel.length; k++)
-                    {
-                        dataset.addValue( count[k] , fiat , hozLabel[k]);
-                    }
+                for(int k = 0; k < hozLabel.length; k++)
+                {
+                    dataset.addValue( count[k] , "Average is: " + sectionAverage[k] , hozLabel[k]);
                 }
 
                 return dataset;
@@ -705,14 +708,13 @@ public class UserInterface extends GradeAnalyzer {
                 JFreeChart barChart = ChartFactory.createBarChart("Score Distribution",
                         "Score Group", "Number of Grades in Group", createDataset(),
                         PlotOrientation.HORIZONTAL, true, true, false);
-//                        "Score bar",
-//                        "Score group",
-//                        "Number of Grades in Group",
-//                        createDataset(),
-//                        PlotOrientation.HORIZONTAL,
-//                        true, true, false);
+
                 ChartPanel chartPanel = new ChartPanel( barChart );
-                chartPanel.setPreferredSize(new Dimension( 560 , 367 ) );
+                chartPanel.setPreferredSize(new Dimension( 1024 , 703 ) );
+                CategoryPlot categoryPlot = barChart.getCategoryPlot();
+                BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
+                br.setMinimumBarLength(.1);
+                br.setItemMargin(-3);
                 frame.setContentPane( chartPanel );
                 frame.pack();
                 RefineryUtilities.centerFrameOnScreen(frame);

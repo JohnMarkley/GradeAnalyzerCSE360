@@ -213,7 +213,7 @@ public class UserInterface extends GradeAnalyzer {
 
 
                     //Checking if values are within bounds set by user.
-                    if (value < highBound && value > lowBound) {
+                    if (value <= highBound && value >= lowBound) {
                         kbgrades[importGrades.length] = value;
                     }
                     else {

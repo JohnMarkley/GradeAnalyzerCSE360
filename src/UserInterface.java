@@ -432,6 +432,74 @@ public class UserInterface extends GradeAnalyzer {
 
             }
         });
+
+        createReportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                String boundReport = "The bounds for the data set are: \n"
+                        +"High bound: " + highBound + "\n" + "Low bound: " + lowBound+ "\n";
+                String analysisReport = "A current analysis of the data results in:\n"
+                        + "Number of entries: " + importGrades.length + "\n"
+                        + "Highest Value: " + max + "\n"
+                        + "Lowest Value: " + min + "\n"
+                        + "Mean: " + mean + "\n"
+                        + "Median: " + median + "\n"
+                        + "Mode: " + mode + "\n";
+                //each average here
+                String averages = "";
+                findSectionAverages();
+                String percentile = "";
+                for(int i = 0; i < sectionAverage.length; i++)
+                {
+                    percentile = Integer.toString(i+1);
+                    averages = averages + "Group " + percentile +" average is: " + sectionAverage[i] + "\n";
+                }
+                System.out.println(boundReport);
+                System.out.println(analysisReport);
+                System.out.println(averages);
+                System.out.println(history);
+
+                File file = new File("report.txt");
+                if(file.canWrite() == true)
+                {
+                    try {
+                        file.createNewFile();
+                    }
+                    catch(IOException ex)
+                    {
+                        System.out.println("File exists already");
+                    }
+                }
+                else
+                {
+                    file.delete();
+                    try {
+                        file.createNewFile();
+                    }
+                    catch(IOException ex)
+                    {
+                        System.out.println("File exists already");
+                    }
+                }
+
+                try {
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(boundReport);
+                    writer.append("\n");
+                    writer.append(analysisReport);
+                    writer.append("\n");
+                    writer.append(averages);
+                    writer.append("\n");
+                    writer.append(history);
+                    writer.flush();
+                    writer.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     private void getData() {

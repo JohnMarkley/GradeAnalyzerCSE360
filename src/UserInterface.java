@@ -517,6 +517,22 @@ public class UserInterface extends GradeAnalyzer {
         return model;
     }
 
-
+    private void findSectionAverages()
+    {
+        int sectionLength = importGrades.length / 10; //10 is used here since we need 10 averages
+        float localSum = 0;
+        float localAvg = 0;
+        for(int count = 0; count < sectionAverage.length; count++)
+        {
+            for(int sectionCount = 0; sectionCount < sectionLength; sectionCount++)
+            {
+                localSum += importGrades[sectionCount];
+            }
+            localAvg = localSum / sectionLength;
+            sectionAverage[count] = localAvg;
+            System.out.println(sectionAverage[count]);
+            localSum = 0;
+        }
+    }
 
 }

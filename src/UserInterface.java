@@ -17,6 +17,13 @@ import java.util.*;
 import java.awt.event.*;
 import java.lang.String;
 import java.util.Arrays;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.RefineryUtilities;
 
 public class UserInterface extends GradeAnalyzer {
     //Need this for the main class
@@ -624,6 +631,94 @@ public class UserInterface extends GradeAnalyzer {
 
             }
         });
+
+        displayGraphButton.addActionListener(new ActionListener() {
+            private CategoryDataset createDataset( ) {
+                //here can use the loop to declare each variable
+                float boundaries[] = new float[10]; //boundaries for each group
+                boundaries = calculateBoundaries();
+                String hozLabel [] = new String[boundaries.length];
+                hozLabel[0] = lowBound + "-" + boundaries[0];
+                for(int i = 1; i < hozLabel.length-1; i++)
+                {
+                    hozLabel[i] = boundaries[i-1] + "-" + boundaries[i];
+                }
+                hozLabel[9] = boundaries[8] + "-" + max;
+                final String fiat = "Number of Grades in Group";
+
+                int count[] = new int [hozLabel.length]; // one for each bar
+                final DefaultCategoryDataset dataset =
+                        new DefaultCategoryDataset( );
+                for(int j = 0; j < importGrades.length; j++)
+                {
+                    if(importGrades[j] <= boundaries[0])
+                    {
+                        count[0]++;
+                    }
+                    else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
+                    {
+                        count[1]++;
+                    }
+                    else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
+                    {
+                        count[2]++;
+                    }
+                    else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
+                    {
+                        count[3]++;
+                    }
+                    else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
+                    {
+                        count[4]++;
+                    }
+                    else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
+                    {
+                        count[5]++;
+                    }
+                    else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
+                    {
+                        count[6]++;
+                    }
+                    else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
+                    {
+                        count[7]++;
+                    }
+                    else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
+                    {
+                        count[8]++;
+                    }
+                    else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
+                    {
+                        count[9]++;
+                    }
+
+                    for(int k = 0; k < hozLabel.length; k++)
+                    {
+                        dataset.addValue( count[k] , fiat , hozLabel[k]);
+                    }
+                }
+
+                return dataset;
+            }
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("Graph");
+                JFreeChart barChart = ChartFactory.createBarChart("Score Distribution",
+                        "Score Group", "Number of Grades in Group", createDataset(),
+                        PlotOrientation.HORIZONTAL, true, true, false);
+//                        "Score bar",
+//                        "Score group",
+//                        "Number of Grades in Group",
+//                        createDataset(),
+//                        PlotOrientation.HORIZONTAL,
+//                        true, true, false);
+                ChartPanel chartPanel = new ChartPanel( barChart );
+                chartPanel.setPreferredSize(new Dimension( 560 , 367 ) );
+                frame.setContentPane( chartPanel );
+                frame.pack();
+                RefineryUtilities.centerFrameOnScreen(frame);
+                frame.setVisible(true);
+            }
+        });
     }
 
     private void getData() {
@@ -710,32 +805,69 @@ public class UserInterface extends GradeAnalyzer {
         return model;
     }
 
-    private void findSectionAverages()
-    {
-        int sectionLength = importGrades.length / 10; //10 is used here since we need 10 average
-        if(importGrades.length / 10 < 1)
+    private void findSectionAverages() {
+        float boundaryVal [] = new float[10]; // 10 data boundaries
+        float sum [] = new float[10];
+        int count [] = new int[10];
+        boundaryVal = calculateBoundaries();
+
+        for(int j = 0; j < importGrades.length; j++)
         {
-            sectionLength = 1; //at least one number per section
-        }
-        if(importGrades.length <= 10)
-        {
-            sectionAverage = new float[importGrades.length];
-        }
-        else
-        {
-            sectionAverage = new float[10]; //10 averages at most
-        }
-        float localSum = 0;
-        float localAvg = 0;
-        for(int count = 0; count < sectionAverage.length; count++)
-        {
-            for(int sectionCount = 0; sectionCount < sectionLength; sectionCount++)
+            if(importGrades[j] <= boundaryVal[0])
             {
-                localSum += importGrades[sectionCount + (count * sectionLength)];
+                sum[0] += importGrades[j];
+                count[0]++;
             }
-            localAvg = localSum / sectionLength;
-            sectionAverage[count] = localAvg;
-            localSum = 0;
+            else if(importGrades[j] > boundaryVal[0] && importGrades[j] <= boundaryVal[1])
+            {
+                sum[1] += importGrades[j];
+                count[1]++;
+            }
+            else if(importGrades[j] > boundaryVal[1] && importGrades[j] <= boundaryVal[2])
+            {
+                sum[2] += importGrades[j];
+                count[2]++;
+            }
+            else if(importGrades[j] > boundaryVal[2] && importGrades[j] <= boundaryVal[3])
+            {
+                sum[3] += importGrades[j];
+                count[3]++;
+            }
+            else if(importGrades[j] > boundaryVal[3] && importGrades[j] <= boundaryVal[4])
+            {
+                sum[4] += importGrades[j];
+                count[4]++;
+            }
+            else if(importGrades[j] > boundaryVal[4] && importGrades[j] <= boundaryVal[5])
+            {
+                sum[5] += importGrades[j];
+                count[5]++;
+            }
+            else if(importGrades[j] > boundaryVal[5] && importGrades[j] <= boundaryVal[6])
+            {
+                sum[6] += importGrades[j];
+                count[6]++;
+            }
+            else if(importGrades[j] > boundaryVal[6] && importGrades[j] <= boundaryVal[7])
+            {
+                sum[7] += importGrades[j];
+                count[7]++;
+            }
+            else if (importGrades[j] > boundaryVal[7] && importGrades[j] <= boundaryVal[8])
+            {
+                sum[8] += importGrades[j];
+                count[8]++;
+            }
+            else if(importGrades[j] > boundaryVal[8] && importGrades[j] <= boundaryVal[9])
+            {
+                sum[9] += importGrades[j];
+                count[9]++;
+            }
+
+            for(int k = 0; k < sectionAverage.length; k++)
+            {
+                sectionAverage[k] = sum[k] / count[k];
+            }
         }
     }
     private float[] reverseArr(float[] arr)
@@ -748,5 +880,53 @@ public class UserInterface extends GradeAnalyzer {
         }
         return arr;
     }
+    private float[] calculateBoundaries()
+    {
+        float boundaryVal [] = new float[10]; // 10 data boundaries
+        double calcBound [] = new double[10];
+        float temp;
+        double holdVal;
+        double holdVal2;
+        int index;
+        int index2;
+        float avg;
+        calcBound[0] = Math.ceil(max * 0.1);
+        calcBound[1] = Math.ceil(max * 0.2);
+        calcBound[2] = Math.ceil(max * 0.3);
+        calcBound[3] = Math.ceil(max * 0.4);
+        calcBound[4] = Math.ceil(max * 0.5);
+        calcBound[5] = Math.ceil(max * 0.6);
+        calcBound[6] = Math.ceil(max * 0.7);
+        calcBound[7] = Math.ceil(max * 0.8);
+        calcBound[8] = Math.ceil(max * 0.9);
+        calcBound[9] = max;
 
+        for(int i = 0; i < boundaryVal.length; i++)
+        {
+            boundaryVal[i] = (float)calcBound[i];
+        }
+
+
+
+//        for(int i = 0; i < boundaryVal.length; i++)
+//        {
+//            temp = (i * (importGrades.length + 1)) / 10; //equation to find a decile
+//            holdVal = temp;
+//            if(Math.floor(holdVal) == temp) //checks to see if temp can be converted into an int
+//            {
+//                index = (int)temp;
+//                boundaryVal[i] = importGrades[index];
+//            }
+//            else
+//            {
+//                holdVal = temp; holdVal2 = temp;
+//                holdVal = Math.floor(holdVal);
+//                holdVal2 = Math.ceil(holdVal2);
+//                index = (int)holdVal; index2 = (int)holdVal2;
+//                avg = (importGrades[index] + importGrades[index2]) / 2;
+//                boundaryVal[i] = avg;
+//            }
+//        }
+        return boundaryVal;
+    }
 }

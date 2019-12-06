@@ -3,13 +3,24 @@ High bound: 100
 Low bound: 0
 
 A current analysis of the data results in:
-Number of entries: 2
-Highest Value: 70.0
-Lowest Value: 50.0
-Mean: 60.0
-Median: 70.0
-Mode: 50.0
+Number of entries: 3
+Highest Value: 60.0
+Lowest Value: 0.0
+Mean: 36.666668
+Median: 50.0
+Mode: 0.0
 
-Group 1 average is: 50.0
-Group 2 average is: 70.0
+Group 1 average is: 0.0
+Group 2 average is: 50.0
+Group 3 average is: 60.0
 
+Appended 45.0 to grade set
+Appended 50.0 to grade set
+Appended 40.0 to grade set
+Deleted 40.0 from the current grade set
+Deleted 50.0 from the current grade set
+Appended 50.0 to grade set
+Appended 50.0 to grade set
+Deleted 0.0 from the current grade set
+Appended 60.0 to grade set
+Displayed analysis information

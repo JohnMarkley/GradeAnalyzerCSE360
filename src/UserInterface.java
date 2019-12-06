@@ -171,6 +171,7 @@ public class UserInterface extends GradeAnalyzer {
                     }
                     fw.flush();
                     fw.close();
+                    history = "Created a new grade set\n";
                 } catch (IOException ex1) {
                     ex1.printStackTrace();
                 }
@@ -232,6 +233,7 @@ public class UserInterface extends GradeAnalyzer {
                             importGrades[i] = kbgrades[i];
                         addToTableSet(importGrades);
                         getData();
+                        history = history + "Appended " + value + " to grade set\n";
                     }
                 }
             }
@@ -386,6 +388,7 @@ public class UserInterface extends GradeAnalyzer {
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
                                 fw.flush();
                                 fw.close();
+                                history = history + "Appended grades from file " + inputString + "\n";
                             } catch (IOException ex1) {
                                 ex1.printStackTrace();
                             }
@@ -432,7 +435,7 @@ public class UserInterface extends GradeAnalyzer {
                 modeLabel.setText("Mode: " + mode);
                 medianLabel.setText("Median: " + median);
 
-
+                history = history + "Displayed analysis information\n";
             }
         });
 

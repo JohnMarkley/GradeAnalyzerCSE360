@@ -7,11 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jcommon_1_0_24.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$8.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +41,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/shihyugraph/jfreechart-1.5.0.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -124,10 +126,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1575605678630">
+    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1575651802800">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575605678630" />
+    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575651802800" />
     <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575620363952">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -144,10 +146,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575620363952" />
-    <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575602749107">
+    <state x="242" y="0" key="SettingsEditor" timestamp="1575651804830">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="521" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1575615693046" />
+    <state x="242" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1575651804830" />
+    <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575651263453">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="521" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1575651263453" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1575603557554">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

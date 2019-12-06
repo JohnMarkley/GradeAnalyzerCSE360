@@ -17,6 +17,13 @@ import java.util.*;
 import java.awt.event.*;
 import java.lang.String;
 import java.util.Arrays;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.RefineryUtilities;
 
 public class UserInterface extends GradeAnalyzer {
     //Need this for the main class
@@ -622,6 +629,57 @@ public class UserInterface extends GradeAnalyzer {
                     }
                 }
 
+            }
+        });
+
+        displayGraphButton.addActionListener(new ActionListener() {
+            private CategoryDataset createDataset( ) {
+                //here can use the loop to declare each variable
+                final String fiat = "Score average";
+                final String num = "0-10";
+                final String num1 = "10-20";
+                final String num2 = "20-30";
+                final String num3 = "30-40";
+                final String num4 = "40-50";
+                final String num5 = "50-60";
+                final String num6 = "60-70";
+                final String num7 = "70-80";
+                final String num8 = "80-90";
+                final String num9 = "90-100";
+
+                final DefaultCategoryDataset dataset =
+                        new DefaultCategoryDataset( );
+
+                dataset.addValue( 9.0 , fiat , num );
+                dataset.addValue( 17.0 , fiat , num1 );
+                dataset.addValue( 22.0 , fiat , num2 );
+                dataset.addValue( 37.0 , fiat , num3 );
+                dataset.addValue( 42.0 , fiat , num4 );
+                dataset.addValue( 56.0 , fiat , num5 );
+                dataset.addValue( 68.0 , fiat , num6 );
+                dataset.addValue( 73.0 , fiat , num7 );
+                dataset.addValue( 85.5 , fiat , num8 );
+                dataset.addValue( 98.0 , fiat , num9 );
+
+
+                return dataset;
+            }
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("Graph");
+                JFreeChart barChart = ChartFactory.createBarChart(
+                        "Score bar",
+                        "Score group",
+                        "Score Average",
+                        createDataset(),
+                        PlotOrientation.HORIZONTAL,
+                        true, true, false);
+
+                ChartPanel chartPanel = new ChartPanel( barChart );
+                chartPanel.setPreferredSize(new Dimension( 560 , 367 ) );
+                frame.setContentPane( chartPanel );
+                frame.pack();
+                RefineryUtilities.centerFrameOnScreen(frame);
+                frame.setVisible(true);
             }
         });
     }

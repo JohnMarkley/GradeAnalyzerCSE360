@@ -646,49 +646,65 @@ public class UserInterface extends GradeAnalyzer {
                 hozLabel[9] = boundaries[8] + "-" + max;
                 final String fiat = "Score average";
 
+                int count[] = new int [hozLabel.length]; // one for each bar
                 final DefaultCategoryDataset dataset =
                         new DefaultCategoryDataset( );
                 for(int j = 0; j < importGrades.length; j++)
                 {
                     if(importGrades[j] <= boundaries[0])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[0]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[0]);
+                        count[0]++;
                     }
                     else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[1]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[1]);
+                        count[1]++;
                     }
                     else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[2]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[2]);
+                        count[2]++;
                     }
                     else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[3]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[3]);
+                        count[3]++;
                     }
                     else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[4]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[4]);
+                        count[4]++;
                     }
                     else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[5]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[5]);
+                        count[5]++;
                     }
                     else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[6]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[6]);
+                        count[6]++;
                     }
                     else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[7]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[7]);
+                        count[7]++;
                     }
                     else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[8]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[8]);
+                        count[8]++;
                     }
                     else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
                     {
-                        dataset.addValue( importGrades[j] , fiat , hozLabel[9]);
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[9]);
+                        count[9]++;
+                    }
+
+                    for(int k = 0; k < hozLabel.length; k++)
+                    {
+                        dataset.addValue( count[k] , fiat , hozLabel[k]);
                     }
                 }
 
@@ -699,7 +715,7 @@ public class UserInterface extends GradeAnalyzer {
                 JFreeChart barChart = ChartFactory.createBarChart(
                         "Score bar",
                         "Score group",
-                        "Score Average",
+                        "Number of Grades in Group",
                         createDataset(),
                         PlotOrientation.HORIZONTAL,
                         true, true, false);

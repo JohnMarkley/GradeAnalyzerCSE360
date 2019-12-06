@@ -635,32 +635,66 @@ public class UserInterface extends GradeAnalyzer {
         displayGraphButton.addActionListener(new ActionListener() {
             private CategoryDataset createDataset( ) {
                 //here can use the loop to declare each variable
+                float boundaries[] = new float[10]; //boundaries for each group
+                boundaries = calculateBoundaries();
+                String hozLabel [] = new String[boundaries.length];
+                hozLabel[0] = lowBound + "-" + boundaries[0];
+                for(int i = 1; i < hozLabel.length-1; i++)
+                {
+                    hozLabel[i] = boundaries[i] + "-" + boundaries[i+1];
+                }
+                hozLabel[9] = boundaries[9] + "-" + highBound;
                 final String fiat = "Score average";
-                final String num = "0-10";
-                final String num1 = "10-20";
-                final String num2 = "20-30";
-                final String num3 = "30-40";
-                final String num4 = "40-50";
-                final String num5 = "50-60";
-                final String num6 = "60-70";
-                final String num7 = "70-80";
-                final String num8 = "80-90";
-                final String num9 = "90-100";
 
                 final DefaultCategoryDataset dataset =
                         new DefaultCategoryDataset( );
+                for(int j = 0; j < importGrades.length; j++)
+                {
+                    if(importGrades[j] <= boundaries[0])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[0]);
+                    }
+                    else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[1]);
+                    }
+                    else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[2]);
+                    }
+                    else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[3]);
+                    }
+                    else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[4]);
+                    }
+                    else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[5]);
+                    }
+                    else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[6]);
+                    }
+                    else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[7]);
+                    }
+                    else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[8]);
+                    }
+                    else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
+                    {
+                        dataset.addValue( importGrades[j] , fiat , hozLabel[9]);
+                    }
+                    else if(importGrades[j] > boundaries[9])
+                    {
 
-                dataset.addValue( 9.0 , fiat , num );
-                dataset.addValue( 17.0 , fiat , num1 );
-                dataset.addValue( 22.0 , fiat , num2 );
-                dataset.addValue( 37.0 , fiat , num3 );
-                dataset.addValue( 42.0 , fiat , num4 );
-                dataset.addValue( 56.0 , fiat , num5 );
-                dataset.addValue( 68.0 , fiat , num6 );
-                dataset.addValue( 73.0 , fiat , num7 );
-                dataset.addValue( 85.5 , fiat , num8 );
-                dataset.addValue( 98.0 , fiat , num9 );
-
+                    }
+                }
 
                 return dataset;
             }
@@ -806,5 +840,34 @@ public class UserInterface extends GradeAnalyzer {
         }
         return arr;
     }
-
+    private float[] calculateBoundaries()
+    {
+        float boundaryVal [] = new float[10]; // 10 data boundaries
+        float temp;
+        double holdVal;
+        double holdVal2;
+        int index;
+        int index2;
+        float avg;
+        for(int i = 0; i < boundaryVal.length; i++)
+        {
+            temp = (i * (importGrades.length + 1)) / 10; //equation to find a decile
+            holdVal = temp;
+            if(Math.floor(holdVal) == temp) //checks to see if temp can be converted into an int
+            {
+                index = (int)temp;
+                boundaryVal[i] = importGrades[index];
+            }
+            else
+            {
+                holdVal = temp; holdVal2 = temp;
+                holdVal = Math.floor(holdVal);
+                holdVal2 = Math.ceil(holdVal2);
+                index = (int)holdVal; index2 = (int)holdVal2;
+                avg = (importGrades[index] + importGrades[index2]) / 2;
+                boundaryVal[i] = avg;
+            }
+        }
+        return boundaryVal;
+    }
 }

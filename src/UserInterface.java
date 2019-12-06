@@ -644,7 +644,7 @@ public class UserInterface extends GradeAnalyzer {
                     hozLabel[i] = boundaries[i-1] + "-" + boundaries[i];
                 }
                 hozLabel[9] = boundaries[8] + "-" + max;
-                final String fiat = "Score average";
+                final String fiat = "Number of Grades in Group";
 
                 int count[] = new int [hozLabel.length]; // one for each bar
                 final DefaultCategoryDataset dataset =
@@ -653,52 +653,42 @@ public class UserInterface extends GradeAnalyzer {
                 {
                     if(importGrades[j] <= boundaries[0])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[0]);
                         count[0]++;
                     }
                     else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[1]);
                         count[1]++;
                     }
                     else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[2]);
                         count[2]++;
                     }
                     else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[3]);
                         count[3]++;
                     }
                     else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[4]);
                         count[4]++;
                     }
                     else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[5]);
                         count[5]++;
                     }
                     else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[6]);
                         count[6]++;
                     }
                     else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[7]);
                         count[7]++;
                     }
                     else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[8]);
                         count[8]++;
                     }
                     else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
                     {
-                        //dataset.addValue( importGrades[j] , fiat , hozLabel[9]);
                         count[9]++;
                     }
 
@@ -712,14 +702,15 @@ public class UserInterface extends GradeAnalyzer {
             }
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("Graph");
-                JFreeChart barChart = ChartFactory.createBarChart(
-                        "Score bar",
-                        "Score group",
-                        "Number of Grades in Group",
-                        createDataset(),
-                        PlotOrientation.HORIZONTAL,
-                        true, true, false);
-
+                JFreeChart barChart = ChartFactory.createBarChart("Score Distribution",
+                        "Score Group", "Number of Grades in Group", createDataset(),
+                        PlotOrientation.HORIZONTAL, true, true, false);
+//                        "Score bar",
+//                        "Score group",
+//                        "Number of Grades in Group",
+//                        createDataset(),
+//                        PlotOrientation.HORIZONTAL,
+//                        true, true, false);
                 ChartPanel chartPanel = new ChartPanel( barChart );
                 chartPanel.setPreferredSize(new Dimension( 560 , 367 ) );
                 frame.setContentPane( chartPanel );

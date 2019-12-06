@@ -164,7 +164,7 @@ public class UserInterface extends GradeAnalyzer {
                                         //Checking if contents are out of bounds or not
 
                                         //Checking if values are within bounds set by user.
-                                        if (value <= highBound && value >= lowBound) {
+                                        if (value < highBound && value > lowBound) {
                                             importGrades[position] = value;
                                             position++;
                                         }
@@ -176,6 +176,7 @@ public class UserInterface extends GradeAnalyzer {
                                 }
                                 readIn.close();
                                 getData();
+                                addToTableSet(importGrades);
                             }
                             else {
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
@@ -907,28 +908,6 @@ public class UserInterface extends GradeAnalyzer {
         {
             boundaryVal[i] = (float)calcBound[i];
         }
-
-
-
-//        for(int i = 0; i < boundaryVal.length; i++)
-//        {
-//            temp = (i * (importGrades.length + 1)) / 10; //equation to find a decile
-//            holdVal = temp;
-//            if(Math.floor(holdVal) == temp) //checks to see if temp can be converted into an int
-//            {
-//                index = (int)temp;
-//                boundaryVal[i] = importGrades[index];
-//            }
-//            else
-//            {
-//                holdVal = temp; holdVal2 = temp;
-//                holdVal = Math.floor(holdVal);
-//                holdVal2 = Math.ceil(holdVal2);
-//                index = (int)holdVal; index2 = (int)holdVal2;
-//                avg = (importGrades[index] + importGrades[index2]) / 2;
-//                boundaryVal[i] = avg;
-//            }
-//        }
         return boundaryVal;
     }
 }

@@ -151,7 +151,7 @@ public class UserInterface extends GradeAnalyzer {
                                         //Checking if contents are out of bounds or not
 
                                         //Checking if values are within bounds set by user.
-                                        if (value < highBound && value > lowBound) {
+                                        if (value <= highBound && value >= lowBound) {
                                             importGrades[position] = value;
                                             position++;
                                         }
@@ -162,6 +162,7 @@ public class UserInterface extends GradeAnalyzer {
 
                                 }
                                 readIn.close();
+                                getData();
                             }
                             else {
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
@@ -230,6 +231,7 @@ public class UserInterface extends GradeAnalyzer {
                         for(int i = 0; i < kbgrades.length; i++)
                             importGrades[i] = kbgrades[i];
                         addToTableSet(importGrades);
+                        getData();
                     }
                 }
             }
@@ -376,6 +378,7 @@ public class UserInterface extends GradeAnalyzer {
 
                             readIn.close();
                             addToTableSet(importGrades);
+                            getData();
                         }
                         else{
                             try {
@@ -500,6 +503,61 @@ public class UserInterface extends GradeAnalyzer {
                 }
             }
         });
+
+        searchAndDeleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //NOTE: Currently there's this error where the number deleted is replaced by a zero if it's not
+                //the last one in the set. Will work on resolving this.
+                String inputString = inputTextField.getText();
+                float value = 0;
+                boolean cont = true; //continue or not if number is valid
+                try { value = Float.parseFloat(inputString); }
+                catch (NumberFormatException ex) { System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
+                    cont = false;
+                }
+                if (cont) {
+                    if(value > highBound || value < lowBound)
+                    {
+                        cont = false;
+                        System.out.println("Value is not allowed"); //-----REPLACE ERROR
+                    }
+                    if(cont) {
+                        float[] kbgrades = new float[importGrades.length - 1];
+                        float numAt = -1; //-1 represents the number not being in the set
+                        for (int i = 0; i < importGrades.length; i++) //find number and mark its index in the original set
+                        {
+                            if (importGrades[i] == value) {
+                                numAt = i;
+                                i = importGrades.length;
+                            }
+                        }
+
+                        int kIndex = 0;
+                        int impIndex = 0;
+                        while (kIndex < kbgrades.length)
+                        { //copy everything over except for the one marked index, the one we want to delete
+                            if (impIndex == numAt) {
+                                impIndex++;
+                            }
+                            else {
+                                kbgrades[kIndex] = importGrades[impIndex];
+                            }
+                            impIndex++;
+                            kIndex++;
+                        }
+
+                        importGrades = new float[kbgrades.length]; //copy everything back over to the working set
+                        for(int i = 0; i < kbgrades.length; i++) {
+                            importGrades[i] = kbgrades[i];
+                        }
+                        addToTableSet(importGrades);
+                        getData();
+                        history = history + "Deleted " + value + " from the current grade set\n";
+                    }
+                }
+            }
+        });
     }
 
     private void getData() {
@@ -598,7 +656,6 @@ public class UserInterface extends GradeAnalyzer {
             }
             localAvg = localSum / sectionLength;
             sectionAverage[count] = localAvg;
-            System.out.println(sectionAverage[count]);
             localSum = 0;
         }
     }

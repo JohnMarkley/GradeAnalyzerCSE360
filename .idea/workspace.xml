@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +32,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/GradeAnalyzerCSE360-developtest" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -112,22 +112,26 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575605365833">
+    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1575605678630">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575605365833" />
-    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1575605365832">
+    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575605678630" />
+    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575612349589">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575605365832" />
-    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1575605365832">
+    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575612349589" />
+    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1575612349588">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575605365832" />
-    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1575605365832">
+    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575612349588" />
+    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1575612349588">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575605365832" />
+    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575612349588" />
+    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1575612349588">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575612349588" />
     <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575602749107">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

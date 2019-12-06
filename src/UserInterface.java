@@ -569,6 +569,48 @@ public class UserInterface extends GradeAnalyzer {
                 }
             }
         });
+
+        setBoundryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String high = highBoundryInput.getText();
+                String low = lowBoundryInput.getText();
+                int highBoundary = 1;
+                int lowBoundary = 0;
+
+                try { highBoundary = Integer.parseInt(high);}
+                catch (NumberFormatException ex) {System.out.println("Value is not allowed");} //fix message
+                try { lowBoundary = Integer.parseInt(low);}
+                catch (NumberFormatException ex) {System.out.println("Value is not allowed");}
+                if(highBoundary <= lowBoundary)
+                {
+                    System.out.println("High boundary must be greater than low boundary");
+
+                    highBoundryInput.setText("");
+                    lowBoundryInput.setText("");
+                }
+                else
+                {
+                    boolean validBound = true;
+                    for(int i = 0; i < importGrades.length; i++)
+                    {
+                        if(importGrades[i] > highBoundary || importGrades[i] < lowBoundary)
+                        {
+                            i = importGrades.length;
+                            validBound = false;
+                            System.out.println("There's data that is outside of these new bounds.\n" +
+                                    "Either make a new data set or change the boundary values.");
+                        }
+                    }
+                    if(validBound == true) {
+                        highBound = highBoundary;
+                        lowBound = lowBoundary;
+                        history = history + "Set high bound to " + highBound + " and low bound to " + lowBound + "\n";
+                    }
+                }
+
+            }
+        });
     }
 
     private void getData() {

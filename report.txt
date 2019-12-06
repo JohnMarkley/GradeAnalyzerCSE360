@@ -1,26 +1,18 @@
 The bounds for the data set are: 
-High bound: 100
+High bound: 25
 Low bound: 0
 
 A current analysis of the data results in:
-Number of entries: 33
-Highest Value: 100.0
-Lowest Value: 0.0
-Mean: 48.415154
-Median: 50.0
-Mode: 34.0
+Number of entries: 2
+Highest Value: 20.0
+Lowest Value: 3.0
+Mean: 11.5
+Median: 20.0
+Mode: 3.0
 
-Group 1 average is: 1.3333334
-Group 2 average is: 11.666667
-Group 3 average is: 24.333334
-Group 4 average is: 34.0
-Group 5 average is: 37.566666
-Group 6 average is: 48.066666
-Group 7 average is: 56.333332
-Group 8 average is: 63.0
-Group 9 average is: 77.46667
-Group 10 average is: 85.46667
+Group 1 average is: 3.0
+Group 2 average is: 20.0
 
-Created a new grade set
-Deleted 13.0 from the current grade set
-Displayed analysis information
+Set high bound to 25 and low bound to 0
+Appended 20.0 to grade set
+Appended 3.0 to grade set

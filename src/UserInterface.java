@@ -698,15 +698,65 @@ public class UserInterface extends GradeAnalyzer {
         Arrays.sort(arr);
         reverseArr(arr); //These two function ensure the array is in descending order
         DefaultTableModel newModel = getTableModel();
-        for(int i = 0; i < arr.length; i++)
-            newModel.addRow(new Object[] { arr[i] });
+        int columnLength = 5; //This can be changed
+        //If we need to expand the length
+        while(columnLength * 4 < arr.length){
+            columnLength = columnLength * 2;
+        }
+
+        int deleteRowCount = 0;
+        //If there is only one column just add that shit
+        if (arr.length <= columnLength) {
+            for (int i = 0; i < arr.length; i++)
+                newModel.addRow(new Object[]{arr[i]});
+        }else if(arr.length <= columnLength * 2 ) {
+            //TWO COLUMNS
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+
+                }else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+
+        }else if(arr.length > columnLength * 2 && arr.length <= columnLength * 3 ) {
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength * 2 < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
+                    deleteRowCount++;
+                }else if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+                } else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+
+
+        }else {
+            //4444444444444444444444
+
+
+
+        }
         tableSet.setModel(newModel);
+        while(deleteRowCount > 0 ){
+            DefaultTableModel temp = (DefaultTableModel)tableSet.getModel();
+            temp.removeRow(temp.getRowCount() - 1);
+            tableSet.setModel(temp);
+            deleteRowCount--;
+        }
 
     }
 
     private DefaultTableModel getTableModel(){
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Grades");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
         return model;
     }
 

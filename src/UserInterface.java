@@ -442,8 +442,6 @@ public class UserInterface extends GradeAnalyzer {
         createReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
                 String boundReport = "The bounds for the data set are: \n"
                         +"High bound: " + highBound + "\n" + "Low bound: " + lowBound+ "\n";
                 String analysisReport = "A current analysis of the data results in:\n"
@@ -515,48 +513,58 @@ public class UserInterface extends GradeAnalyzer {
                 String inputString = inputTextField.getText();
                 float value = 0;
                 boolean cont = true; //continue or not if number is valid
-                try { value = Float.parseFloat(inputString); }
-                catch (NumberFormatException ex) { System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
+                try {
+                    value = Float.parseFloat(inputString);
+                } catch (NumberFormatException ex) {
+                    System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
                     cont = false;
                 }
                 if (cont) {
-                    if(value > highBound || value < lowBound)
-                    {
+                    if (value > highBound || value < lowBound) {
                         cont = false;
                         System.out.println("Value is not allowed"); //-----REPLACE ERROR
                     }
-                    if(cont) {
+                    if (cont) {
                         float[] kbgrades = new float[importGrades.length - 1];
                         float numAt = -1; //-1 represents the number not being in the set
+                        Arrays.sort(importGrades);
+                        reverseArr(importGrades);
                         for (int i = 0; i < importGrades.length; i++) //find number and mark its index in the original set
                         {
                             if (importGrades[i] == value) {
                                 numAt = i;
                                 i = importGrades.length;
+                                System.out.println(numAt);
                             }
                         }
+                        if (numAt == -1) {
+                            System.out.println("Number not in set");
+                        }
+                        else {
+                            int kIndex = 0;
+                            int impIndex = 0;
 
-                        int kIndex = 0;
-                        int impIndex = 0;
-                        while (kIndex < kbgrades.length)
-                        { //copy everything over except for the one marked index, the one we want to delete
-                            if (impIndex == numAt) {
+                            while (kIndex < kbgrades.length) { //copy everything over except for the one marked index, the one we want to delete
+                                if (impIndex == numAt) {
+                                    System.out.println("Skipping " + importGrades[impIndex]);
+                                    impIndex++;
+                                } else {
+                                    kbgrades[kIndex] = importGrades[impIndex];
+                                    System.out.println("Temp arr at i is: " + kbgrades[kIndex]);
+                                }
                                 impIndex++;
+                                kIndex++;
                             }
-                            else {
-                                kbgrades[kIndex] = importGrades[impIndex];
-                            }
-                            impIndex++;
-                            kIndex++;
-                        }
 
-                        importGrades = new float[kbgrades.length]; //copy everything back over to the working set
-                        for(int i = 0; i < kbgrades.length; i++) {
-                            importGrades[i] = kbgrades[i];
+                            importGrades = new float[kbgrades.length]; //copy everything back over to the working set
+                            for (int i = 0; i < kbgrades.length; i++) {
+                                importGrades[i] = kbgrades[i];
+                                System.out.println("New set at " + i + " is: " + importGrades[i]);
+                            }
+                            addToTableSet(importGrades);
+                            getData();
+                            history = history + "Deleted " + value + " from the current grade set\n";
                         }
-                        addToTableSet(importGrades);
-                        getData();
-                        history = history + "Deleted " + value + " from the current grade set\n";
                     }
                 }
             }
@@ -564,8 +572,6 @@ public class UserInterface extends GradeAnalyzer {
     }
 
     private void getData() {
-
-
         //Median find
         if(importGrades.length > 0) {
             float sum = 0, tempMin = importGrades[0], tempMax = importGrades[0];

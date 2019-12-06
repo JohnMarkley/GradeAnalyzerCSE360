@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/grades.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
@@ -33,6 +37,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.GradeAnalyzer">
     <configuration name="GradeAnalyzer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -103,25 +116,29 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575595409944">
+    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575604893856">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575595409944" />
-    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1575595409943">
+    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575604893856" />
+    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1575604893855">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575595409943" />
-    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1575595409943">
+    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575604893855" />
+    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1575604893855">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575595409943" />
-    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1575595409943">
+    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575604893855" />
+    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1575604893855">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575595409943" />
-    <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575594730748">
+    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575604893855" />
+    <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575602749107">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="521" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1575594730748" />
+    <state x="521" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1575602749107" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1575603557554">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1575603557554" />
   </component>
 </project>

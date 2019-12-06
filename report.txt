@@ -3,25 +3,28 @@ High bound: 100
 Low bound: 0
 
 A current analysis of the data results in:
-Number of entries: 32
+Number of entries: 16
 Highest Value: 90.0
 Lowest Value: 0.0
-Mean: 45.271877
-Median: 45.0
+Mean: 49.568752
+Median: 50.0
 Mode: 34.0
 
 Group 1 average is: 0.0
-Group 2 average is: 11.666667
-Group 3 average is: 24.333334
+Group 2 average is: 23.0
+Group 3 average is: 25.0
 Group 4 average is: 34.0
-Group 5 average is: 37.566666
-Group 6 average is: 46.399998
-Group 7 average is: 54.0
-Group 8 average is: 60.0
-Group 9 average is: 73.333336
-Group 10 average is: 81.933334
+Group 5 average is: 34.0
+Group 6 average is: 34.5
+Group 7 average is: 35.0
+Group 8 average is: 44.2
+Group 9 average is: 50.0
+Group 10 average is: 56.0
 
-Appended 45.0 to grade set
+Set high bound to 70 and low bound to 0
+Set high bound to 100 and low bound to 0
+Appended 35.0 to grade set
+Displayed analysis information
 Deleted 2.0 from the current grade set
 Deleted 13.0 from the current grade set
-Deleted 100.0 from the current grade set
+Displayed analysis information

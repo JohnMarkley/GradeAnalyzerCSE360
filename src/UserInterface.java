@@ -554,10 +554,9 @@ public class UserInterface extends GradeAnalyzer {
                                 if (impIndex == numAt) {
                                     System.out.println("Skipping " + importGrades[impIndex]);
                                     impIndex++;
-                                } else {
-                                    kbgrades[kIndex] = importGrades[impIndex];
-                                    System.out.println("Temp arr at i is: " + kbgrades[kIndex]);
                                 }
+                                kbgrades[kIndex] = importGrades[impIndex];
+                                System.out.println("Temp arr at i is: " + kbgrades[kIndex]);
                                 impIndex++;
                                 kIndex++;
                             }

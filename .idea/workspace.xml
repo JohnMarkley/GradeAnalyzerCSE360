@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$8.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>

@@ -43,8 +43,7 @@ public class UserInterface extends GradeAnalyzer {
     private float[] sectionAverage = new float[10]; //average of each 10% of data
     static Timestamp timestamp;
     static String OS = System.getProperty("os.name").toLowerCase();
-    static String desktop = System.getProperty ("user.home") + "/Desktop/";
-    static File filename = new File(desktop+"/error.txt");
+    static File filename = new File("error.txt");
     static String toolsPath = "C:/WINDOWS/system32/notepad.exe ";
     //Swing Components
     private JTextField highBoundryInput;
@@ -76,8 +75,7 @@ public class UserInterface extends GradeAnalyzer {
     public UserInterface() throws FileNotFoundException {
 
         createTableSet();
-
-
+        inputTextField.setText("");
         createNewSetFromFileButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -99,13 +97,17 @@ public class UserInterface extends GradeAnalyzer {
                     int space = inputString.indexOf(" ");
                     if(space != -1){
                         fw.write("["+timestamp+"] Import file failure: Please import one file at a time\n");
+                        JOptionPane.showMessageDialog(null, "Import file failure: Please import one file at a time");
                     }
                     else if(dotPosition == -1) {
                         fw.write("["+timestamp+"] Import file failure: Please check the file name\n");
+                        JOptionPane.showMessageDialog(null,"Import file failure: Please check the file name");
                     }
                     else {// if the dot exists in the string
-                        if(dotPosition + 3 > inputString.length() -1)
+                        if(dotPosition + 3 > inputString.length() -1){
                             fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                            JOptionPane.showMessageDialog(null,"Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.");
+                        }
                         else {
                             String extensionType = inputString.substring(dotPosition +1, dotPosition +4);
                             //extensionType grabs the extension type of input filename
@@ -118,6 +120,7 @@ public class UserInterface extends GradeAnalyzer {
                                 }
                                 catch (FileNotFoundException ex) {
                                     fw.write("["+timestamp+"] Import file failure: The "+inputString+" does not exist. Please check the file name\n");
+                                    JOptionPane.showMessageDialog(null,"Import file failure: The "+inputString+" does not exist. Please check the file name");
                                 }
 
                                 int lineCount = 0;
@@ -157,6 +160,7 @@ public class UserInterface extends GradeAnalyzer {
                                     //Try catch tries to make sure contents in files is a number.
                                     try { value = Float.parseFloat(num); }
                                     catch (NumberFormatException ex) {
+                                        JOptionPane.showMessageDialog(null,"ValueError: "+value+" is not allowed. Please check the file's data.");
                                         fw.write("["+timestamp+"] ValueError: "+value+" is not allowed. Please check the file's data.\n");
                                         cont = false;
                                     }
@@ -170,6 +174,7 @@ public class UserInterface extends GradeAnalyzer {
                                         }
                                         else{
                                             fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                                            JOptionPane.showMessageDialog(null,"ValueError: " + value + " is out of bounds. Please check the value again");
                                         }
                                     }
 
@@ -179,6 +184,7 @@ public class UserInterface extends GradeAnalyzer {
                                 addToTableSet(importGrades);
                             }
                             else {
+                                JOptionPane.showMessageDialog(null,"Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.");
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
                             }
                         }
@@ -203,6 +209,13 @@ public class UserInterface extends GradeAnalyzer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timestamp = new Timestamp(System.currentTimeMillis());
+                if(!filename.exists()){
+                    try {
+                        filename.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 String inputString = inputTextField.getText();
                 inputString = inputString.trim();
                 readIn = new Scanner(inputString);
@@ -213,6 +226,7 @@ public class UserInterface extends GradeAnalyzer {
                     try {
                         FileWriter fw = new FileWriter(filename, true);
                         fw.write("["+timestamp+"] ValueError: "+ value +" is not allowed. Please check the file's data.\n");
+                        JOptionPane.showMessageDialog(null,"ValueError: "+ value +" is not allowed. Please check the file's data.");
                         fw.flush();
                         fw.close();
                     } catch (IOException ex1) {
@@ -235,6 +249,7 @@ public class UserInterface extends GradeAnalyzer {
                         try {
                             FileWriter fw = new FileWriter(filename, true);
                             fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                            JOptionPane.showMessageDialog(null,"ValueError: "+ value +" is out of bounds. Please check the value again.");
                             fw.flush();
                             fw.close();
                         } catch (IOException ex1) {
@@ -264,6 +279,13 @@ public class UserInterface extends GradeAnalyzer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timestamp = new Timestamp(System.currentTimeMillis());
+                if(!filename.exists()){
+                    try {
+                        filename.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 String inputString = inputTextField.getText();
                 inputString = inputString.trim();
                 int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
@@ -273,6 +295,7 @@ public class UserInterface extends GradeAnalyzer {
                     try {
                         FileWriter fw = new FileWriter(filename, true);
                         fw.write("["+timestamp+"] Import file failure: Please import one file at a time\n");
+                        JOptionPane.showMessageDialog(null, "Import file failure: Please import one file at a time");
                         fw.flush();
                         fw.close();
                     } catch (IOException ex1) {
@@ -283,6 +306,8 @@ public class UserInterface extends GradeAnalyzer {
                     try {
                         FileWriter fw = new FileWriter(filename, true);
                         fw.write("["+timestamp+"] Import file failure: Invalid Data type. Please check the your data\n");
+                        JOptionPane.showMessageDialog(null, "Import file failure: Invalid Data type. Please check the your data");
+
                         fw.flush();
                         fw.close();
                     } catch (IOException ex1) {
@@ -295,6 +320,7 @@ public class UserInterface extends GradeAnalyzer {
                         try {
                             FileWriter fw = new FileWriter(filename, true);
                             fw.write("["+timestamp+"] Import file failure: Invalid Data type. Please check the your data\n");
+                            JOptionPane.showMessageDialog(null, "Import file failure: Invalid Data type. Please check the your data");
                             fw.flush();
                             fw.close();
                         } catch (IOException ex1) {
@@ -312,7 +338,16 @@ public class UserInterface extends GradeAnalyzer {
                                 readIn = new Scanner(gradeFile);
                             }
                             catch (FileNotFoundException ex) {
-                                System.out.print("File not found");
+                                FileWriter fw = null;
+                                try {
+                                    fw = new FileWriter(filename, true);
+                                    fw.write("["+timestamp+"] Import file failure: The "+inputString+" does not exist. Please check the file name\n");
+                                    JOptionPane.showMessageDialog(null, "Import file failure: The "+inputString+" does not exist. Please check the file name");
+                                    fw.flush();
+                                    fw.close();
+                                } catch (IOException exfw) {
+                                    exfw.printStackTrace();
+                                }
                             }
 
                             int lineCount = 0;
@@ -359,6 +394,7 @@ public class UserInterface extends GradeAnalyzer {
                                     try {
                                         FileWriter fw = new FileWriter(filename, true);
                                         fw.write("["+timestamp+"] ValueError: "+ value +" is not allowed. Please check the file's data.\n");
+                                        JOptionPane.showMessageDialog(null, "ValueError: "+ value +" is not allowed. Please check the file's data.");
                                         fw.flush();
                                         fw.close();
                                     } catch (IOException ex1) {
@@ -378,6 +414,7 @@ public class UserInterface extends GradeAnalyzer {
                                         try {
                                             FileWriter fw = new FileWriter(filename, true);
                                             fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                                            JOptionPane.showMessageDialog(null, "ValueError: "+ value +" is out of bounds. Please check the value again");
                                             fw.flush();
                                             fw.close();
                                         } catch (IOException ex1) {
@@ -402,11 +439,12 @@ public class UserInterface extends GradeAnalyzer {
                             try {
                                 FileWriter fw = new FileWriter(filename, true);
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                                JOptionPane.showMessageDialog(null, " Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.");
                                 fw.flush();
                                 fw.close();
                                 history = history + "Appended grades from file " + inputString + "\n";
-                            } catch (IOException ex1) {
-                                ex1.printStackTrace();
+                            } catch (IOException exfw) {
+                                exfw.printStackTrace();
                             }
                         }
 
@@ -418,16 +456,23 @@ public class UserInterface extends GradeAnalyzer {
         errorLogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!filename.exists()){
+                    try {
+                        filename.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 if(OS.indexOf("win")>=0) {
                     try {
-                        Process exec = Runtime.getRuntime().exec(toolsPath + desktop + "error.txt");
+                        Process exec = Runtime.getRuntime().exec(toolsPath + "error.txt");
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                 }
                 if(OS.indexOf("mac")>=0){
                     try {
-                        Process p = new ProcessBuilder("open", desktop+"error.txt").start();
+                        Process p = new ProcessBuilder("open", "error.txt").start();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -585,6 +630,7 @@ public class UserInterface extends GradeAnalyzer {
             public void actionPerformed(ActionEvent e) {
                 //NOTE: Currently there's this error where the number deleted is replaced by a zero if it's not
                 //the last one in the set. Will work on resolving this.
+                timestamp = new Timestamp(System.currentTimeMillis());
                 String inputString = inputTextField.getText();
                 inputString = inputString.trim();
                 float value = 0;
@@ -592,13 +638,30 @@ public class UserInterface extends GradeAnalyzer {
                 try {
                     value = Float.parseFloat(inputString);
                 } catch (NumberFormatException ex) {
-                    System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
+                    try {
+                        FileWriter fw = new FileWriter(filename, true);
+                        fw.write("["+timestamp+"] Value error: Value is not allowed.\n");
+                        JOptionPane.showMessageDialog(null, " Value error: Value is not allowed.");
+                        fw.flush();
+                        fw.close();
+                    } catch (IOException exfw) {
+                        exfw.printStackTrace();
+                    }
+
                     cont = false;
                 }
                 if (cont) {
                     if (value > highBound || value < lowBound) {
                         cont = false;
-                        System.out.println("Value is not allowed"); //-----REPLACE ERROR
+                        try {
+                            FileWriter fw = new FileWriter(filename, true);
+                            fw.write("["+timestamp+"] Value error: Value is not allowed.\n");
+                            JOptionPane.showMessageDialog(null, " Value error: Value is not allowed.");
+                            fw.flush();
+                            fw.close();
+                        } catch (IOException exfw) {
+                            exfw.printStackTrace();
+                        }
                     }
                     if (cont) {
                         float[] kbgrades = new float[importGrades.length - 1];
@@ -659,12 +722,12 @@ public class UserInterface extends GradeAnalyzer {
                 int lowBoundary = 0;
 
                 try { highBoundary = Integer.parseInt(high);}
-                catch (NumberFormatException ex) {System.out.println("Value is not allowed");} //fix message
+                catch (NumberFormatException ex) {JOptionPane.showMessageDialog(null, " Value error: Value is not allowed."); } //fix message
                 try { lowBoundary = Integer.parseInt(low);}
-                catch (NumberFormatException ex) {System.out.println("Value is not allowed");}
+                catch (NumberFormatException ex) {JOptionPane.showMessageDialog(null, " Value error: Value is not allowed."); }
                 if(highBoundary <= lowBoundary)
                 {
-                    System.out.println("High boundary must be greater than low boundary");
+                    JOptionPane.showMessageDialog(null, " High boundary must be greater than low boundary");
 
                     highBoundryInput.setText(Integer.toString(highBound));
                     lowBoundryInput.setText(Integer.toString(lowBound));

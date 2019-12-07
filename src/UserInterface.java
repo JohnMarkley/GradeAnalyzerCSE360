@@ -920,16 +920,6 @@ public class UserInterface extends GradeAnalyzer {
 
     }
 
-    /*private void addToTableSet(float[] arr){
-        Arrays.sort(arr);
-        reverseArr(arr); //These two function ensure the array is in descending order
-        DefaultTableModel newModel = getTableModel();
-        for(int i = 0; i < arr.length; i++)
-            newModel.addRow(new Object[] { arr[i] });
-        tableSet.setModel(newModel);
-
-    }*/
-
     private DefaultTableModel getTableModel(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("");

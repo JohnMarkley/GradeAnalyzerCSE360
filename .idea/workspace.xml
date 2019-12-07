@@ -8,7 +8,19 @@
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/GradeAnalyzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/GradeAnalyzer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface$9.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GradeAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GradeAnalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,18 +50,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GradeAnalyzerCSE360/jfreechart-1.5.0.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/jcommon-1.0.24.jar!/" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
       <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602\src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
     </key>
   </component>
   <component name="RunManager" selected="Application.GradeAnalyzer">
@@ -122,30 +134,40 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1575680546544">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="713" y="136" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1575690384597">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="713" y="136" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575690384597" />
+    <state x="632" y="145" key="FileChooserDialogImpl" timestamp="1575690440521">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575680546544" />
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575681397383">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="632" y="145" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575690440521" />
+    <state width="1877" height="298" key="GridCell.Tab.0.bottom" timestamp="1575690599628">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1575681397383" />
-    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1575681397375">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1877" height="298" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575690599628" />
+    <state width="1877" height="298" key="GridCell.Tab.0.center" timestamp="1575690599628">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1575681397375" />
-    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1575681397374">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1877" height="298" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575690599628" />
+    <state width="1877" height="298" key="GridCell.Tab.0.left" timestamp="1575690599627">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1575681397374" />
-    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1575681397375">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1877" height="298" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575690599627" />
+    <state width="1877" height="298" key="GridCell.Tab.0.right" timestamp="1575690599628">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575681397375" />
-    <state x="242" y="0" key="SettingsEditor" timestamp="1575680548417">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1877" height="298" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575690599628" />
+    <state x="363" y="0" key="SettingsEditor" timestamp="1575691672393">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="242" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1575680548417" />
+    <state x="363" y="0" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575691672393" />
     <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575667316565">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

@@ -851,7 +851,76 @@ public class UserInterface extends GradeAnalyzer {
         tableSet.setModel(getTableModel());
     }
 
+
     private void addToTableSet(float[] arr){
+        Arrays.sort(arr);
+        reverseArr(arr); //These two function ensure the array is in descending order
+        DefaultTableModel newModel = getTableModel();
+        int columnLength = 5; //This can be changed
+        //If we need to expand the length of columns this will do so by doubling it once reaching capacity
+        while(columnLength * 4 < arr.length){
+            columnLength = columnLength * 2;
+        }
+
+        int deleteRowCount = 0;
+        //If there is only one column just add that shit
+        if (arr.length <= columnLength) {
+            for (int i = 0; i < arr.length; i++)
+                newModel.addRow(new Object[]{arr[i]});
+        }else if(arr.length <= columnLength * 2 ) {
+            //Two columns worth of data
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+
+                }else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+            //Three columns worth of data
+        }else if(arr.length > columnLength * 2 && arr.length <= columnLength * 3 ) {
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength * 2 < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
+                    deleteRowCount++;
+                }else if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+                } else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+            //Four columns worth of data
+        }else {
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength * 3 < arr.length){
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2], arr[i + columnLength * 3]});
+                    deleteRowCount++;
+                }
+                else if(i + columnLength * 2 < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
+                    deleteRowCount++;
+                }else if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+                } else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+        }
+
+        tableSet.setModel(newModel);
+        while(deleteRowCount > 0 ){
+            DefaultTableModel temp = (DefaultTableModel)tableSet.getModel();
+            temp.removeRow(temp.getRowCount() - 1);
+            tableSet.setModel(temp);
+            deleteRowCount--;
+        }
+
+    }
+
+    /*private void addToTableSet(float[] arr){
         Arrays.sort(arr);
         reverseArr(arr); //These two function ensure the array is in descending order
         DefaultTableModel newModel = getTableModel();
@@ -859,11 +928,14 @@ public class UserInterface extends GradeAnalyzer {
             newModel.addRow(new Object[] { arr[i] });
         tableSet.setModel(newModel);
 
-    }
+    }*/
 
     private DefaultTableModel getTableModel(){
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Grades");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
         return model;
     }
 

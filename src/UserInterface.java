@@ -1,12 +1,4 @@
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.RefineryUtilities;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -19,12 +11,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Arrays;
-<<<<<<< Updated upstream
-=======
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
->>>>>>> Stashed changes
+
 
 public class UserInterface extends GradeAnalyzer {
     //Need this for the main class

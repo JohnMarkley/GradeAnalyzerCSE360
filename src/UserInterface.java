@@ -1,8 +1,15 @@
-import com.sun.deploy.util.ArrayUtil;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.RefineryUtilities;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,12 +18,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Scanner;
-import java.text.NumberFormat;
-import java.util.*;
-import java.awt.event.*;
-import java.lang.String;
 import java.util.Arrays;
+<<<<<<< Updated upstream
+=======
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+>>>>>>> Stashed changes
 
 public class UserInterface extends GradeAnalyzer {
     //Need this for the main class

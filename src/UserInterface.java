@@ -910,6 +910,55 @@ public class UserInterface extends GradeAnalyzer {
 
         }
 
+        int deleteRowCount = 0;
+        //If there is only one column just add that shit
+        if (arr.length <= columnLength) {
+            for (int i = 0; i < arr.length; i++)
+                newModel.addRow(new Object[]{arr[i]});
+        }else if(arr.length <= columnLength * 2 ) {
+            //Two columns worth of data
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+
+                }else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+            //Three columns worth of data
+        }else if(arr.length > columnLength * 2 && arr.length <= columnLength * 3 ) {
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength * 2 < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
+                    deleteRowCount++;
+                }else if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+                } else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+            //Four columns worth of data
+        }else {
+            for(int i = 0; i < arr.length; i++) {
+                if(i + columnLength * 3 < arr.length){
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2], arr[i + columnLength * 3]});
+                    deleteRowCount++;
+                }
+                else if(i + columnLength * 2 < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
+                    deleteRowCount++;
+                }else if(i + columnLength < arr.length) {
+                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
+                    deleteRowCount++;
+                } else {
+                    newModel.addRow(new Object[]{arr[i]});
+                }
+            }
+
+        }
+
         tableSet.setModel(newModel);
         while(deleteRowCount > 0 ){
             DefaultTableModel temp = (DefaultTableModel)tableSet.getModel();

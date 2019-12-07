@@ -20,9 +20,7 @@ import java.util.Arrays;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.RefineryUtilities;
@@ -30,7 +28,6 @@ import org.jfree.ui.RefineryUtilities;
 public class UserInterface extends GradeAnalyzer {
     //Need this for the main class
     JPanel panel1;
-
     //Input Variables
     static File gradeFile;
     static Scanner readIn;
@@ -43,8 +40,7 @@ public class UserInterface extends GradeAnalyzer {
     private float[] sectionAverage = new float[10]; //average of each 10% of data
     static Timestamp timestamp;
     static String OS = System.getProperty("os.name").toLowerCase();
-    static String desktop = System.getProperty ("user.home") + "/Desktop/";
-    static File filename = new File(desktop+"/error.txt");
+    static File filename = new File("error.txt");
     static String toolsPath = "C:/WINDOWS/system32/notepad.exe ";
     //Swing Components
     private JTextField highBoundryInput;
@@ -76,8 +72,7 @@ public class UserInterface extends GradeAnalyzer {
     public UserInterface() throws FileNotFoundException {
 
         createTableSet();
-
-
+        inputTextField.setText("");
         createNewSetFromFileButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -99,13 +94,17 @@ public class UserInterface extends GradeAnalyzer {
                     int space = inputString.indexOf(" ");
                     if(space != -1){
                         fw.write("["+timestamp+"] Import file failure: Please import one file at a time\n");
+                        JOptionPane.showMessageDialog(null, "Import file failure: Please import one file at a time");
                     }
                     else if(dotPosition == -1) {
                         fw.write("["+timestamp+"] Import file failure: Please check the file name\n");
+                        JOptionPane.showMessageDialog(null,"Import file failure: Please check the file name");
                     }
                     else {// if the dot exists in the string
-                        if(dotPosition + 3 > inputString.length() -1)
+                        if(dotPosition + 3 > inputString.length() -1){
                             fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                            JOptionPane.showMessageDialog(null,"Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.");
+                        }
                         else {
                             String extensionType = inputString.substring(dotPosition +1, dotPosition +4);
                             //extensionType grabs the extension type of input filename
@@ -118,6 +117,7 @@ public class UserInterface extends GradeAnalyzer {
                                 }
                                 catch (FileNotFoundException ex) {
                                     fw.write("["+timestamp+"] Import file failure: The "+inputString+" does not exist. Please check the file name\n");
+                                    JOptionPane.showMessageDialog(null,"Import file failure: The "+inputString+" does not exist. Please check the file name");
                                 }
 
                                 int lineCount = 0;
@@ -157,6 +157,7 @@ public class UserInterface extends GradeAnalyzer {
                                     //Try catch tries to make sure contents in files is a number.
                                     try { value = Float.parseFloat(num); }
                                     catch (NumberFormatException ex) {
+                                        JOptionPane.showMessageDialog(null,"ValueError: "+value+" is not allowed. Please check the file's data.");
                                         fw.write("["+timestamp+"] ValueError: "+value+" is not allowed. Please check the file's data.\n");
                                         cont = false;
                                     }
@@ -164,21 +165,22 @@ public class UserInterface extends GradeAnalyzer {
                                         //Checking if contents are out of bounds or not
 
                                         //Checking if values are within bounds set by user.
-                                        if (value < highBound  && value > lowBound ) {
+                                        if (value <= highBound && value >= lowBound) {
                                             importGrades[position] = value;
                                             position++;
                                         }
                                         else{
                                             fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                                            JOptionPane.showMessageDialog(null,"ValueError: " + value + " is out of bounds. Please check the value again");
                                         }
                                     }
 
                                 }
                                 readIn.close();
                                 getData();
-                                addToTableSet(importGrades);
                             }
                             else {
+                                JOptionPane.showMessageDialog(null,"Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.");
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
                             }
                         }
@@ -203,6 +205,13 @@ public class UserInterface extends GradeAnalyzer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timestamp = new Timestamp(System.currentTimeMillis());
+                if(!filename.exists()){
+                    try {
+                        filename.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 String inputString = inputTextField.getText();
                 inputString = inputString.trim();
                 readIn = new Scanner(inputString);
@@ -213,6 +222,7 @@ public class UserInterface extends GradeAnalyzer {
                     try {
                         FileWriter fw = new FileWriter(filename, true);
                         fw.write("["+timestamp+"] ValueError: "+ value +" is not allowed. Please check the file's data.\n");
+                        JOptionPane.showMessageDialog(null,"ValueError: "+ value +" is not allowed. Please check the file's data.");
                         fw.flush();
                         fw.close();
                     } catch (IOException ex1) {
@@ -235,6 +245,7 @@ public class UserInterface extends GradeAnalyzer {
                         try {
                             FileWriter fw = new FileWriter(filename, true);
                             fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                            JOptionPane.showMessageDialog(null,"ValueError: "+ value +" is out of bounds. Please check the value again.");
                             fw.flush();
                             fw.close();
                         } catch (IOException ex1) {
@@ -264,6 +275,13 @@ public class UserInterface extends GradeAnalyzer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timestamp = new Timestamp(System.currentTimeMillis());
+                if(!filename.exists()){
+                    try {
+                        filename.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 String inputString = inputTextField.getText();
                 inputString = inputString.trim();
                 int dotPosition = inputString.indexOf("."); /*Checks if the filename has a dot for the filename to validate if
@@ -273,6 +291,7 @@ public class UserInterface extends GradeAnalyzer {
                     try {
                         FileWriter fw = new FileWriter(filename, true);
                         fw.write("["+timestamp+"] Import file failure: Please import one file at a time\n");
+                        JOptionPane.showMessageDialog(null, "Import file failure: Please import one file at a time");
                         fw.flush();
                         fw.close();
                     } catch (IOException ex1) {
@@ -283,6 +302,8 @@ public class UserInterface extends GradeAnalyzer {
                     try {
                         FileWriter fw = new FileWriter(filename, true);
                         fw.write("["+timestamp+"] Import file failure: Invalid Data type. Please check the your data\n");
+                        JOptionPane.showMessageDialog(null, "Import file failure: Invalid Data type. Please check the your data");
+
                         fw.flush();
                         fw.close();
                     } catch (IOException ex1) {
@@ -295,6 +316,7 @@ public class UserInterface extends GradeAnalyzer {
                         try {
                             FileWriter fw = new FileWriter(filename, true);
                             fw.write("["+timestamp+"] Import file failure: Invalid Data type. Please check the your data\n");
+                            JOptionPane.showMessageDialog(null, "Import file failure: Invalid Data type. Please check the your data");
                             fw.flush();
                             fw.close();
                         } catch (IOException ex1) {
@@ -312,7 +334,16 @@ public class UserInterface extends GradeAnalyzer {
                                 readIn = new Scanner(gradeFile);
                             }
                             catch (FileNotFoundException ex) {
-                                System.out.print("File not found");
+                                FileWriter fw = null;
+                                try {
+                                    fw = new FileWriter(filename, true);
+                                    fw.write("["+timestamp+"] Import file failure: The "+inputString+" does not exist. Please check the file name\n");
+                                    JOptionPane.showMessageDialog(null, "Import file failure: The "+inputString+" does not exist. Please check the file name");
+                                    fw.flush();
+                                    fw.close();
+                                } catch (IOException exfw) {
+                                    exfw.printStackTrace();
+                                }
                             }
 
                             int lineCount = 0;
@@ -359,6 +390,7 @@ public class UserInterface extends GradeAnalyzer {
                                     try {
                                         FileWriter fw = new FileWriter(filename, true);
                                         fw.write("["+timestamp+"] ValueError: "+ value +" is not allowed. Please check the file's data.\n");
+                                        JOptionPane.showMessageDialog(null, "ValueError: "+ value +" is not allowed. Please check the file's data.");
                                         fw.flush();
                                         fw.close();
                                     } catch (IOException ex1) {
@@ -378,6 +410,7 @@ public class UserInterface extends GradeAnalyzer {
                                         try {
                                             FileWriter fw = new FileWriter(filename, true);
                                             fw.write("[" + timestamp + "] ValueError: " + value + " is out of bounds. Please check the value again\n");
+                                            JOptionPane.showMessageDialog(null, "ValueError: "+ value +" is out of bounds. Please check the value again");
                                             fw.flush();
                                             fw.close();
                                         } catch (IOException ex1) {
@@ -402,11 +435,12 @@ public class UserInterface extends GradeAnalyzer {
                             try {
                                 FileWriter fw = new FileWriter(filename, true);
                                 fw.write("["+timestamp+"] Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.\n");
+                                JOptionPane.showMessageDialog(null, " Import file failure: The "+inputString+" is not allowed. Please make sure the file type is .txt or .csv.");
                                 fw.flush();
                                 fw.close();
                                 history = history + "Appended grades from file " + inputString + "\n";
-                            } catch (IOException ex1) {
-                                ex1.printStackTrace();
+                            } catch (IOException exfw) {
+                                exfw.printStackTrace();
                             }
                         }
 
@@ -417,17 +451,25 @@ public class UserInterface extends GradeAnalyzer {
         });
         errorLogButton.addActionListener(new ActionListener() {
             @Override
+
             public void actionPerformed(ActionEvent e) {
+                if(!filename.exists()){
+                    try {
+                        filename.createNewFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 if(OS.indexOf("win")>=0) {
                     try {
-                        Process exec = Runtime.getRuntime().exec(toolsPath + desktop + "error.txt");
+                        Process exec = Runtime.getRuntime().exec(toolsPath + "error.txt");
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                 }
                 if(OS.indexOf("mac")>=0){
                     try {
-                        Process p = new ProcessBuilder("open", desktop+"error.txt").start();
+                        Process p = new ProcessBuilder("open", "error.txt").start();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -458,67 +500,6 @@ public class UserInterface extends GradeAnalyzer {
         createReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int count[] = new int[10];
-                float boundaries[] = new float[10];
-                boundaries = calculateBoundaries();
-                for(int j = 0; j < importGrades.length; j++)
-                {
-                    if(importGrades[j] <= boundaries[0])
-                    {
-                        count[0]++;
-                    }
-                    else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
-                    {
-                        count[1]++;
-                    }
-                    else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
-                    {
-                        count[2]++;
-                    }
-                    else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
-                    {
-                        count[3]++;
-                    }
-                    else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
-                    {
-                        count[4]++;
-                    }
-                    else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
-                    {
-                        count[5]++;
-                    }
-                    else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
-                    {
-                        count[6]++;
-                    }
-                    else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
-                    {
-                        count[7]++;
-                    }
-                    else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
-                    {
-                        count[8]++;
-                    }
-                    else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
-                    {
-                        count[9]++;
-                    }
-                }
-
-                String categories = "Grade distribution: \n"
-                        + min + "-" + boundaries[0] + ": " + count[0] + " out of " + importGrades.length +"\n"
-                        + boundaries[0] + "-" + boundaries[1] + ": " + count[1] + " out of " + importGrades.length + "\n"
-                        + boundaries[1] + "-" + boundaries[2] + ": " + count[2] + " out of " + importGrades.length + "\n"
-                        + boundaries[2] + "-" + boundaries[3] + ": " + count[3] + " out of " + importGrades.length + "\n"
-                        + boundaries[3] + "-" + boundaries[4] + ": " + count[4] + " out of " + importGrades.length + "\n"
-                        + boundaries[4] + "-" + boundaries[5] + ": " + count[5] + " out of " + importGrades.length + "\n"
-                        + boundaries[5] + "-" + boundaries[6] + ": " + count[6] + " out of " + importGrades.length + "\n"
-                        + boundaries[6] + "-" + boundaries[7] + ": " + count[7] + " out of " + importGrades.length + "\n"
-                        + boundaries[7] + "-" + boundaries[8] + ": " + count[8] + " out of " + importGrades.length + "\n"
-                        + boundaries[8] + "-" + boundaries[9] + ": " + count[9] + " out of " + importGrades.length + "\n";
-
-
-
                 String boundReport = "The bounds for the data set are: \n"
                         +"High bound: " + highBound + "\n" + "Low bound: " + lowBound+ "\n";
                 String analysisReport = "A current analysis of the data results in:\n"
@@ -537,6 +518,10 @@ public class UserInterface extends GradeAnalyzer {
                     percentile = Integer.toString(i+1);
                     averages = averages + "Group " + percentile +" average is: " + sectionAverage[i] + "\n";
                 }
+                System.out.println(boundReport);
+                System.out.println(analysisReport);
+                System.out.println(averages);
+                System.out.println(history);
 
                 File file = new File("report.txt");
                 if(file.canWrite() == true)
@@ -567,8 +552,6 @@ public class UserInterface extends GradeAnalyzer {
                     writer.append("\n");
                     writer.append(analysisReport);
                     writer.append("\n");
-                    writer.append(categories);
-                    writer.append("\n");
                     writer.append(averages);
                     writer.append("\n");
                     writer.append(history);
@@ -585,6 +568,7 @@ public class UserInterface extends GradeAnalyzer {
             public void actionPerformed(ActionEvent e) {
                 //NOTE: Currently there's this error where the number deleted is replaced by a zero if it's not
                 //the last one in the set. Will work on resolving this.
+                timestamp = new Timestamp(System.currentTimeMillis());
                 String inputString = inputTextField.getText();
                 inputString = inputString.trim();
                 float value = 0;
@@ -592,13 +576,30 @@ public class UserInterface extends GradeAnalyzer {
                 try {
                     value = Float.parseFloat(inputString);
                 } catch (NumberFormatException ex) {
-                    System.out.println("Value is not allowed"); //--------------------REPLACE ERROR
+                    try {
+                        FileWriter fw = new FileWriter(filename, true);
+                        fw.write("["+timestamp+"] Value error: Value is not allowed.\n");
+                        JOptionPane.showMessageDialog(null, " Value error: Value is not allowed.");
+                        fw.flush();
+                        fw.close();
+                    } catch (IOException exfw) {
+                        exfw.printStackTrace();
+                    }
+
                     cont = false;
                 }
                 if (cont) {
                     if (value > highBound || value < lowBound) {
                         cont = false;
-                        System.out.println("Value is not allowed"); //-----REPLACE ERROR
+                        try {
+                            FileWriter fw = new FileWriter(filename, true);
+                            fw.write("["+timestamp+"] Value error: Value is not allowed.\n");
+                            JOptionPane.showMessageDialog(null, " Value error: Value is not allowed.");
+                            fw.flush();
+                            fw.close();
+                        } catch (IOException exfw) {
+                            exfw.printStackTrace();
+                        }
                     }
                     if (cont) {
                         float[] kbgrades = new float[importGrades.length - 1];
@@ -659,15 +660,15 @@ public class UserInterface extends GradeAnalyzer {
                 int lowBoundary = 0;
 
                 try { highBoundary = Integer.parseInt(high);}
-                catch (NumberFormatException ex) {System.out.println("Value is not allowed");} //fix message
+                catch (NumberFormatException ex) {JOptionPane.showMessageDialog(null, " Value error: Value is not allowed."); } //fix message
                 try { lowBoundary = Integer.parseInt(low);}
-                catch (NumberFormatException ex) {System.out.println("Value is not allowed");}
+                catch (NumberFormatException ex) {JOptionPane.showMessageDialog(null, " Value error: Value is not allowed."); }
                 if(highBoundary <= lowBoundary)
                 {
-                    System.out.println("High boundary must be greater than low boundary");
+                    JOptionPane.showMessageDialog(null, " High boundary must be greater than low boundary");
 
-                    highBoundryInput.setText(Integer.toString(highBound));
-                    lowBoundryInput.setText(Integer.toString(lowBound));
+                    highBoundryInput.setText("");
+                    lowBoundryInput.setText("");
                 }
                 else
                 {
@@ -699,7 +700,6 @@ public class UserInterface extends GradeAnalyzer {
                 //here can use the loop to declare each variable
                 float boundaries[] = new float[10]; //boundaries for each group
                 boundaries = calculateBoundaries();
-                findSectionAverages();
                 String hozLabel [] = new String[boundaries.length];
                 hozLabel[0] = lowBound + "-" + boundaries[0];
                 for(int i = 1; i < hozLabel.length-1; i++)
@@ -707,7 +707,7 @@ public class UserInterface extends GradeAnalyzer {
                     hozLabel[i] = boundaries[i-1] + "-" + boundaries[i];
                 }
                 hozLabel[9] = boundaries[8] + "-" + max;
-                final String fiat = "Number of Grades in Group";
+                final String fiat = "Score average";
 
                 int count[] = new int [hozLabel.length]; // one for each bar
                 final DefaultCategoryDataset dataset =
@@ -716,65 +716,75 @@ public class UserInterface extends GradeAnalyzer {
                 {
                     if(importGrades[j] <= boundaries[0])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[0]);
                         count[0]++;
                     }
                     else if(importGrades[j] > boundaries[0] && importGrades[j] <= boundaries[1])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[1]);
                         count[1]++;
                     }
                     else if(importGrades[j] > boundaries[1] && importGrades[j] <= boundaries[2])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[2]);
                         count[2]++;
                     }
                     else if(importGrades[j] > boundaries[2] && importGrades[j] <= boundaries[3])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[3]);
                         count[3]++;
                     }
                     else if(importGrades[j] > boundaries[3] && importGrades[j] <= boundaries[4])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[4]);
                         count[4]++;
                     }
                     else if(importGrades[j] > boundaries[4] && importGrades[j] <= boundaries[5])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[5]);
                         count[5]++;
                     }
                     else if(importGrades[j] > boundaries[5] && importGrades[j] <= boundaries[6])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[6]);
                         count[6]++;
                     }
                     else if(importGrades[j] > boundaries[6] && importGrades[j] <= boundaries[7])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[7]);
                         count[7]++;
                     }
                     else if (importGrades[j] > boundaries[7] && importGrades[j] <= boundaries[8])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[8]);
                         count[8]++;
                     }
                     else if(importGrades[j] > boundaries[8] && importGrades[j] <= boundaries[9])
                     {
+                        //dataset.addValue( importGrades[j] , fiat , hozLabel[9]);
                         count[9]++;
                     }
-                }
 
-                for(int k = 0; k < hozLabel.length; k++)
-                {
-                    dataset.addValue( count[k] , "Average is: " + sectionAverage[k] , hozLabel[k]);
+                    for(int k = 0; k < hozLabel.length; k++)
+                    {
+                        dataset.addValue( count[k] , fiat , hozLabel[k]);
+                    }
                 }
 
                 return dataset;
             }
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("Graph");
-                JFreeChart barChart = ChartFactory.createBarChart("Score Distribution",
-                        "Score Group", "Number of Grades in Group", createDataset(),
-                        PlotOrientation.HORIZONTAL, true, true, false);
+                JFreeChart barChart = ChartFactory.createBarChart(
+                        "Score bar",
+                        "Score group",
+                        "Number of Grades in Group",
+                        createDataset(),
+                        PlotOrientation.HORIZONTAL,
+                        true, true, false);
 
                 ChartPanel chartPanel = new ChartPanel( barChart );
-                chartPanel.setPreferredSize(new Dimension( 1024 , 703 ) );
-                CategoryPlot categoryPlot = barChart.getCategoryPlot();
-                BarRenderer br = (BarRenderer) categoryPlot.getRenderer();
-                br.setMinimumBarLength(.1);
-                br.setItemMargin(-3);
+                chartPanel.setPreferredSize(new Dimension( 560 , 367 ) );
                 frame.setContentPane( chartPanel );
                 frame.pack();
                 RefineryUtilities.centerFrameOnScreen(frame);
@@ -851,147 +861,48 @@ public class UserInterface extends GradeAnalyzer {
         tableSet.setModel(getTableModel());
     }
 
-
     private void addToTableSet(float[] arr){
         Arrays.sort(arr);
         reverseArr(arr); //These two function ensure the array is in descending order
         DefaultTableModel newModel = getTableModel();
-        int columnLength = 5; //This can be changed
-        //If we need to expand the length of columns this will do so by doubling it once reaching capacity
-        while(columnLength * 4 < arr.length){
-            columnLength = columnLength * 2;
-        }
-
-        int deleteRowCount = 0;
-        //If there is only one column just add that shit
-        if (arr.length <= columnLength) {
-            for (int i = 0; i < arr.length; i++)
-                newModel.addRow(new Object[]{arr[i]});
-        }else if(arr.length <= columnLength * 2 ) {
-            //Two columns worth of data
-            for(int i = 0; i < arr.length; i++) {
-                if(i + columnLength < arr.length) {
-                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
-                    deleteRowCount++;
-
-                }else {
-                    newModel.addRow(new Object[]{arr[i]});
-                }
-            }
-            //Three columns worth of data
-        }else if(arr.length > columnLength * 2 && arr.length <= columnLength * 3 ) {
-            for(int i = 0; i < arr.length; i++) {
-                if(i + columnLength * 2 < arr.length) {
-                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
-                    deleteRowCount++;
-                }else if(i + columnLength < arr.length) {
-                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
-                    deleteRowCount++;
-                } else {
-                    newModel.addRow(new Object[]{arr[i]});
-                }
-            }
-            //Four columns worth of data
-        }else {
-            for(int i = 0; i < arr.length; i++) {
-                if(i + columnLength * 3 < arr.length){
-                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2], arr[i + columnLength * 3]});
-                    deleteRowCount++;
-                }
-                else if(i + columnLength * 2 < arr.length) {
-                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength], arr[i + columnLength * 2]});
-                    deleteRowCount++;
-                }else if(i + columnLength < arr.length) {
-                    newModel.addRow(new Object[]{arr[i], arr[i + columnLength]});
-                    deleteRowCount++;
-                } else {
-                    newModel.addRow(new Object[]{arr[i]});
-                }
-            }
-        }
-
+        for(int i = 0; i < arr.length; i++)
+            newModel.addRow(new Object[] { arr[i] });
         tableSet.setModel(newModel);
-        while(deleteRowCount > 0 ){
-            DefaultTableModel temp = (DefaultTableModel)tableSet.getModel();
-            temp.removeRow(temp.getRowCount() - 1);
-            tableSet.setModel(temp);
-            deleteRowCount--;
-        }
 
     }
 
     private DefaultTableModel getTableModel(){
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("");
-        model.addColumn("");
-        model.addColumn("");
-        model.addColumn("");
+        model.addColumn("Grades");
         return model;
     }
 
-    private void findSectionAverages() {
-        float boundaryVal [] = new float[10]; // 10 data boundaries
-        float sum [] = new float[10];
-        int count [] = new int[10];
-        boundaryVal = calculateBoundaries();
-
-        for(int j = 0; j < importGrades.length; j++)
+    private void findSectionAverages()
+    {
+        int sectionLength = importGrades.length / 10; //10 is used here since we need 10 average
+        if(importGrades.length / 10 < 1)
         {
-            if(importGrades[j] <= boundaryVal[0])
+            sectionLength = 1; //at least one number per section
+        }
+        if(importGrades.length <= 10)
+        {
+            sectionAverage = new float[importGrades.length];
+        }
+        else
+        {
+            sectionAverage = new float[10]; //10 averages at most
+        }
+        float localSum = 0;
+        float localAvg = 0;
+        for(int count = 0; count < sectionAverage.length; count++)
+        {
+            for(int sectionCount = 0; sectionCount < sectionLength; sectionCount++)
             {
-                sum[0] += importGrades[j];
-                count[0]++;
+                localSum += importGrades[sectionCount + (count * sectionLength)];
             }
-            else if(importGrades[j] > boundaryVal[0] && importGrades[j] <= boundaryVal[1])
-            {
-                sum[1] += importGrades[j];
-                count[1]++;
-            }
-            else if(importGrades[j] > boundaryVal[1] && importGrades[j] <= boundaryVal[2])
-            {
-                sum[2] += importGrades[j];
-                count[2]++;
-            }
-            else if(importGrades[j] > boundaryVal[2] && importGrades[j] <= boundaryVal[3])
-            {
-                sum[3] += importGrades[j];
-                count[3]++;
-            }
-            else if(importGrades[j] > boundaryVal[3] && importGrades[j] <= boundaryVal[4])
-            {
-                sum[4] += importGrades[j];
-                count[4]++;
-            }
-            else if(importGrades[j] > boundaryVal[4] && importGrades[j] <= boundaryVal[5])
-            {
-                sum[5] += importGrades[j];
-                count[5]++;
-            }
-            else if(importGrades[j] > boundaryVal[5] && importGrades[j] <= boundaryVal[6])
-            {
-                sum[6] += importGrades[j];
-                count[6]++;
-            }
-            else if(importGrades[j] > boundaryVal[6] && importGrades[j] <= boundaryVal[7])
-            {
-                sum[7] += importGrades[j];
-                count[7]++;
-            }
-            else if (importGrades[j] > boundaryVal[7] && importGrades[j] <= boundaryVal[8])
-            {
-                sum[8] += importGrades[j];
-                count[8]++;
-            }
-            else if(importGrades[j] > boundaryVal[8] && importGrades[j] <= boundaryVal[9])
-            {
-                sum[9] += importGrades[j];
-                count[9]++;
-            }
-
-            for(int k = 0; k < sectionAverage.length; k++)
-            {
-                sectionAverage[k] = sum[k] / count[k];
-            }
+            localAvg = localSum / sectionLength;
+            sectionAverage[count] = localAvg;
+            localSum = 0;
         }
     }
     private float[] reverseArr(float[] arr)
@@ -1004,6 +915,7 @@ public class UserInterface extends GradeAnalyzer {
         }
         return arr;
     }
+
     private float[] calculateBoundaries()
     {
         float boundaryVal [] = new float[10]; // 10 data boundaries
@@ -1029,6 +941,28 @@ public class UserInterface extends GradeAnalyzer {
         {
             boundaryVal[i] = (float)calcBound[i];
         }
+
+
+
+//        for(int i = 0; i < boundaryVal.length; i++)
+//        {
+//            temp = (i * (importGrades.length + 1)) / 10; //equation to find a decile
+//            holdVal = temp;
+//            if(Math.floor(holdVal) == temp) //checks to see if temp can be converted into an int
+//            {
+//                index = (int)temp;
+//                boundaryVal[i] = importGrades[index];
+//            }
+//            else
+//            {
+//                holdVal = temp; holdVal2 = temp;
+//                holdVal = Math.floor(holdVal);
+//                holdVal2 = Math.ceil(holdVal2);
+//                index = (int)holdVal; index2 = (int)holdVal2;
+//                avg = (importGrades[index] + importGrades[index2]) / 2;
+//                boundaryVal[i] = avg;
+//            }
+//        }
         return boundaryVal;
     }
 }

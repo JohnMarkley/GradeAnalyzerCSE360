@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GUI/UserInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GradeAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GradeAnalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,17 +38,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GradeAnalyzerCSE360/jfreechart-1.5.0.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
-      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602\src\META-INF" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602\src" />
       <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
     </key>
   </component>

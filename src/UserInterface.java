@@ -910,7 +910,7 @@ public class UserInterface extends GradeAnalyzer {
 
         }
 
-        int deleteRowCount = 0;
+        deleteRowCount = 0;
         //If there is only one column just add that shit
         if (arr.length <= columnLength) {
             for (int i = 0; i < arr.length; i++)

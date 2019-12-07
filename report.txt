@@ -3,34 +3,34 @@ High bound: 100
 Low bound: 0
 
 A current analysis of the data results in:
-Number of entries: 100
+Number of entries: 99
 Highest Value: 99.9
 Lowest Value: 2.0
-Mean: 56.781578
+Mean: 57.334927
 Median: 57.0
 Mode: 78.4
 
 Grade distribution: 
-2.0-10.0: 8 out of 100
-10.0-20.0: 4 out of 100
-20.0-30.0: 8 out of 100
-30.0-40.0: 12 out of 100
-40.0-50.0: 8 out of 100
-50.0-60.0: 12 out of 100
-60.0-70.0: 4 out of 100
-70.0-80.0: 27 out of 100
-80.0-90.0: 13 out of 100
-90.0-99.9: 4 out of 100
+2.0-10.0: 7 out of 99
+10.0-20.0: 4 out of 99
+20.0-30.0: 8 out of 99
+30.0-40.0: 12 out of 99
+40.0-50.0: 8 out of 99
+50.0-60.0: 12 out of 99
+60.0-70.0: 4 out of 99
+70.0-80.0: 27 out of 99
+80.0-90.0: 13 out of 99
+90.0-99.9: 4 out of 99
 
-Group 1 average is: 4.0
+Group 1 average is: 4.285714
 Group 2 average is: 13.0
 Group 3 average is: 24.0
 Group 4 average is: 34.166668
-Group 5 average is: 47.100002
+Group 5 average is: 47.1
 Group 6 average is: 56.630005
 Group 7 average is: 66.0
-Group 8 average is: 78.1926
+Group 8 average is: 78.19261
 Group 9 average is: 89.30769
 Group 10 average is: 99.9
 
-Created a new grade set
+Deleted 2.0 from the current grade set

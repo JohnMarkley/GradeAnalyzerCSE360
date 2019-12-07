@@ -6,7 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4056006e-42d4-45c0-9a74-a21ad15f0d9e" name="Default Changelist" comment="">
+    <list default="true" id="edad9187-1779-4d20-a3b7-a612ece07a0e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/jcommon-1.0.24.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jfreechart-1.5.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jcommon_1_0_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jcommon_1_0_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,31 +41,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/shihyugraph/jfreechart-1.5.0.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GradeAnalyzerCSE360/jfreechart-1.5.0.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
       <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602\src" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacqueline\Documents\GitHub\GradeAnalyzerCSE3602" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.GradeAnalyzer">
     <configuration name="GradeAnalyzer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -83,6 +76,18 @@
         <item itemvalue="Application.UserInterface" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -120,10 +125,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1575651802800">
+    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1575678229718">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575651802800" />
+    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1575678229718" />
     <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1575673442497">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -140,10 +145,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1575673442497" />
-    <state x="242" y="0" key="SettingsEditor" timestamp="1575651804830">
+    <state x="242" y="0" key="SettingsEditor" timestamp="1575678231700">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="242" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1575651804830" />
+    <state x="242" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1575678231700" />
     <state x="521" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1575667316565">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
